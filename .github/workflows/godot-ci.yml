@@ -1,0 +1,46 @@
+name: "Godot CI"
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+concurrency: ci-${{ github.ref }}
+
+env:
+  BUILD_DIRECTORY: ./build
+
+jobs:
+  godot-export:
+    strategy:
+      matrix:
+        export_template: ["Windows", "HTML5"]
+        godot_version: [3.5.1]
+    name: Godot Export
+    runs-on: ubuntu-latest
+    container:
+      image: barichello/godot-ci:${{ matrix.godot_version }}
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+        with:
+          lfs: true
+      - name: Setup Export Templates
+        run: |
+          mkdir -v -p ~/.local/share/godot/templates
+          mv /root/.local/share/godot/templates/${{ matrix.godot_version }}.stable ~/.local/share/godot/templates/${{ matrix.godot_version }}.stable
+      - name: Build Project
+        run: |
+          mkdir -v -p "${{ env.BUILD_DIRECTORY }}"
+          godot -v --export "${{ matrix.export_template }}"
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ matrix.export_template }}
+          path: "${{ env.BUILD_DIRECTORY }}/"
+      - name: Publish to GitHub Pages
+        if: matrix.export_template == 'HTML5'
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: "${{ env.BUILD_DIRECTORY }}"
+
