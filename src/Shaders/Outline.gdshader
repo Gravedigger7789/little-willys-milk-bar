@@ -1,62 +1,40 @@
 shader_type canvas_item;
 
-uniform vec4 color : hint_color = vec4(1.0);
+uniform vec4 outline_color : hint_color = vec4(1.0);
 uniform float width : hint_range(0, 10) = 1.0;
-uniform int pattern : hint_range(0, 2) = 0; // diamond, circle, square
-uniform bool inside = false;
-uniform bool add_margins = true; // only useful when inside is false
 
-void vertex() {
-	if (add_margins) {
-		VERTEX += (UV * 2.0 - 1.0) * width;
-	}
-}
-
-bool hasContraryNeighbour(vec2 uv, vec2 texture_pixel_size, sampler2D texture) {
-	for (float i = -ceil(width); i <= ceil(width); i++) {
-		float x = abs(i) > width ? width * sign(i) : i;
-		float offset;
-		
-		if (pattern == 0) {
-			offset = width - abs(x);
-		} else if (pattern == 1) {
-			offset = floor(sqrt(pow(width + 0.5, 2) - x * x));
-		} else if (pattern == 2) {
-			offset = width;
-		}
-		
-		for (float j = -ceil(offset); j <= ceil(offset); j++) {
-			float y = abs(j) > offset ? offset * sign(j) : j;
-			vec2 xy = uv + texture_pixel_size * vec2(x, y);
-			
-			if ((xy != clamp(xy, vec2(0.0), vec2(1.0)) || texture(texture, xy).a == 0.0) == inside) {
-				return true;
-			}
-		}
-	}
-	
-	return false;
+void vertex(){
+    VERTEX += (UV * 2.0 - 1.0) * width ;
 }
 
 void fragment() {
-	vec2 uv = UV;
-	
-	if (add_margins) {
-		vec2 texture_pixel_size = vec2(1.0) / (vec2(1.0) / TEXTURE_PIXEL_SIZE + vec2(width * 2.0));
-		
-		uv = (uv - texture_pixel_size * width) * TEXTURE_PIXEL_SIZE / texture_pixel_size;
-		
-		if (uv != clamp(uv, vec2(0.0), vec2(1.0))) {
-			COLOR.a = 0.0;
-		} else {
-			COLOR = texture(TEXTURE, uv);
-		}
-	} else {
-		COLOR = texture(TEXTURE, uv);
+	vec2 original_texture_size = 1.0 / TEXTURE_PIXEL_SIZE;
+	vec2 texture_pixel_size_with_margin = 1.0 / (original_texture_size + (width * 2.0));
+	vec2 size_with_margin = texture_pixel_size_with_margin * width;
+	vec2 uv_size_with_margin = UV - size_with_margin;
+	vec2 ratio = TEXTURE_PIXEL_SIZE / texture_pixel_size_with_margin;
+	vec2 uv_scaled = uv_size_with_margin * ratio;
+
+	vec4 color = texture(TEXTURE, uv_scaled);
+
+	if (uv_scaled != clamp(uv_scaled, vec2(0.0), vec2(1.0))) {
+	    color.a = 0.0;
 	}
-	
-	if ((COLOR.a > 0.0) == inside && hasContraryNeighbour(uv, TEXTURE_PIXEL_SIZE, TEXTURE)) {
-		COLOR.rgb = inside ? mix(COLOR.rgb, color.rgb, color.a) : color.rgb;
-		COLOR.a += (1.0 - COLOR.a) * color.a;
+
+	if (width < 0.1 || outline_color.a <= 0.0) {
+		COLOR = color;
+	} else {
+		float outline = 0.0;
+		outline += texture(TEXTURE, uv_scaled + (size_with_margin * vec2(-1,-1))).a;
+		outline += texture(TEXTURE, uv_scaled + (size_with_margin * vec2(-1,0))).a;
+		outline += texture(TEXTURE, uv_scaled + (size_with_margin * vec2(-1,1))).a;
+		outline += texture(TEXTURE, uv_scaled + (size_with_margin * vec2(0,-1))).a;
+		outline += texture(TEXTURE, uv_scaled + (size_with_margin * vec2(0,1))).a;
+		outline += texture(TEXTURE, uv_scaled + (size_with_margin * vec2(1,-1))).a;
+		outline += texture(TEXTURE, uv_scaled + (size_with_margin * vec2(1,0))).a;
+		outline += texture(TEXTURE, uv_scaled + (size_with_margin * vec2(1,1))).a;
+		outline = min(outline, 1.0);
+
+		COLOR = mix(color, outline_color, outline - color.a);
 	}
 }

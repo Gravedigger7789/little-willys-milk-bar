@@ -29,15 +29,17 @@ func _on_Draggable_mouse_entered() -> void:
 	var tween := create_tween() \
 		.set_trans(Tween.TRANS_LINEAR) \
 		.set_ease(Tween.EASE_OUT)
+	# warning-ignore:return_value_discarded
 	tween.tween_method(self, "_outline_alpha", 0.0, 1.0, 0.5)
 
 func _on_Draggable_mouse_exited() -> void:
 	var tween := create_tween() \
 		.set_trans(Tween.TRANS_LINEAR) \
 		.set_ease(Tween.EASE_OUT)
+	# warning-ignore:return_value_discarded
 	tween.tween_method(self, "_outline_alpha", 1.0, 0.0, 0.5)
 
 
 func _outline_alpha(value: float) -> void:
 	outline_color.a = value
-	sprite.material.set_shader_param("color", outline_color)
+	sprite.material.set_shader_param("outline_color", outline_color)
