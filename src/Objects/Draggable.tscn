@@ -5,6 +5,7 @@
 [ext_resource path="res://src/Shaders/Outline.gdshader" type="Shader" id=3]
 
 [sub_resource type="ShaderMaterial" id=3]
+resource_local_to_scene = true
 shader = ExtResource( 3 )
 shader_param/outline_color = Color( 1, 1, 1, 0 )
 shader_param/width = 1.0
@@ -14,6 +15,9 @@ extents = Vector2( 32, 32 )
 
 [node name="Draggable" type="Area2D"]
 script = ExtResource( 2 )
+
+[node name="SpriteShadow" type="Sprite" parent="."]
+modulate = Color( 0, 0, 0, 0.392157 )
 
 [node name="Sprite" type="Sprite" parent="."]
 material = SubResource( 3 )

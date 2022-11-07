@@ -44,3 +44,6 @@ tile_data = PoolIntArray( 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 
 
 [node name="Draggable" parent="." instance=ExtResource( 4 )]
 position = Vector2( 234, 428 )
+
+[node name="Draggable2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 834, 445 )
