@@ -1,3 +1,5 @@
+class_name Draggable
+
 extends Area2D
 
 signal picked_up
