@@ -11,10 +11,12 @@ shader_param/outline_color = Color( 1, 1, 1, 0 )
 shader_param/width = 3.0
 
 [sub_resource type="CircleShape2D" id=1]
+resource_local_to_scene = true
 radius = 32.0
 
 [node name="Coaster" type="Area2D"]
 collision_layer = 4
+input_pickable = false
 monitorable = false
 script = ExtResource( 2 )
 

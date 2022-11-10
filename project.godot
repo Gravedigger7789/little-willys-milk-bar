@@ -14,7 +14,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/Objects/Coaster.gd"
 }, {
-"base": "Area2D",
+"base": "Coaster",
 "class": "Draggable",
 "language": "GDScript",
 "path": "res://src/Objects/Draggable.gd"

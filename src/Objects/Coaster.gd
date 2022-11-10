@@ -8,7 +8,7 @@ onready var sprite: Sprite = $Sprite
 onready var snap_position: Position2D = $SnapPosition
 
 
-func _on_Coaster_area_entered(area: Draggable) -> void:
+func _on_Coaster_area_entered(area: Area2D) -> void:
 	if area and !area.is_connected("put_down", self, "_on_Draggable_put_down"):
 		var _connected = area.connect("put_down", self, "_on_Draggable_put_down")
 	if area and !area.is_connected("picked_up", self, "_on_Draggable_picked_up"):
@@ -16,7 +16,7 @@ func _on_Coaster_area_entered(area: Draggable) -> void:
 	_tween_outline(0.0, 1.0)
 
 
-func _on_Coaster_area_exited(area: Draggable) -> void:
+func _on_Coaster_area_exited(area: Area2D) -> void:
 	if area and area.is_connected("put_down", self, "_on_Draggable_put_down"):
 		area.disconnect("put_down", self, "_on_Draggable_put_down")
 	if area and !area.is_connected("picked_up", self, "_on_Draggable_picked_up"):
@@ -37,8 +37,8 @@ func _set_outline_alpha(value: float) -> void:
 	sprite.material.set_shader_param("outline_color", outline_color)
 
 
-func _on_Draggable_put_down(area: Draggable) -> void:
+func _on_Draggable_put_down(area: Area2D) -> void:
 	area.snap_to_position(snap_position.global_position)
 
-func _on_Draggable_picked_up(_area: Draggable) -> void:
+func _on_Draggable_picked_up(_area: Area2D) -> void:
 	pass

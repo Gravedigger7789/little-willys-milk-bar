@@ -8,7 +8,7 @@
 resource_local_to_scene = true
 shader = ExtResource( 3 )
 shader_param/outline_color = Color( 1, 1, 1, 0 )
-shader_param/width = 2.0
+shader_param/width = 3.0
 
 [sub_resource type="RectangleShape2D" id=2]
 resource_local_to_scene = true
@@ -18,21 +18,15 @@ extents = Vector2( 32, 64 )
 collision_mask = 0
 script = ExtResource( 2 )
 
-[node name="SpriteShadow" parent="." index="0"]
-position = Vector2( 0, -32 )
-scale = Vector2( 1, 2 )
-
 [node name="Sprite" parent="." index="1"]
 material = SubResource( 1 )
-position = Vector2( 0, -32 )
 scale = Vector2( 1, 2 )
 
 [node name="CollisionShape2D" parent="." index="2"]
-position = Vector2( 0, -32 )
 shape = SubResource( 2 )
 
-[node name="TopSnapPosition" type="Position2D" parent="." index="4"]
-position = Vector2( 0, -85 )
+[node name="SnapPosition" parent="." index="3"]
+position = Vector2( 0, 52 )
 
-[connection signal="area_entered" from="." to="." method="_on_Bottle_area_entered"]
-[connection signal="area_exited" from="." to="." method="_on_Bottle_area_exited"]
+[node name="TopSnapPosition" type="Position2D" parent="." index="4"]
+position = Vector2( 0, -52 )
