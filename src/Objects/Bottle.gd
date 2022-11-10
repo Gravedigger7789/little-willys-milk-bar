@@ -5,13 +5,13 @@ onready var top_snap_position: Position2D = $TopSnapPosition
 
 
 func _on_Glass_area_entered(area: Draggable) -> void:
-	if (!area.is_connected("put_down", self, "_on_Draggable_put_down")):
+	if (area and !area.is_connected("put_down", self, "_on_Draggable_put_down")):
 		var _connected = area.connect("put_down", self, "_on_Draggable_put_down")
 	_tween_outline(0.0, 1.0)
 
 
 func _on_Glass_area_exited(area: Draggable) -> void:
-	if (area.is_connected("put_down", self, "_on_Draggable_put_down")):
+	if (area and area.is_connected("put_down", self, "_on_Draggable_put_down")):
 		area.disconnect("put_down", self, "_on_Draggable_put_down")
 	_tween_outline(1.0, 0.0)
 
