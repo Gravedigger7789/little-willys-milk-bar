@@ -10,11 +10,17 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Area2D",
+"class": "Coaster",
+"language": "GDScript",
+"path": "res://src/Objects/Coaster.gd"
+}, {
+"base": "Area2D",
 "class": "Draggable",
 "language": "GDScript",
 "path": "res://src/Objects/Draggable.gd"
 } ]
 _global_script_class_icons={
+"Coaster": "",
 "Draggable": ""
 }
 
