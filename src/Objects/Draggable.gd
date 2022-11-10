@@ -45,12 +45,12 @@ func _on_Draggable_input_event(_viewport: Node, event: InputEvent, _shape_idx: i
 
 
 func _on_Draggable_mouse_entered() -> void:
-	if (!_dragging):
+	if !_dragging:
 		_tween_outline(0.0, 1.0)
 
 
 func _on_Draggable_mouse_exited() -> void:
-	if (!_dragging):
+	if !_dragging:
 		_tween_outline(1.0, 0.0)
 
 
@@ -65,8 +65,8 @@ func _pickup() -> void:
 	monitorable = true
 	_dragging = true
 
-	if (sprite.scale == sprite_start_scale or \
-		sprite_shadow.position == sprite_shadow_start_position):
+	if sprite.scale == sprite_start_scale or \
+		sprite_shadow.position == sprite_shadow_start_position:
 		_tween_scale_and_shadows(sprite_lift_scale, sprite_shadow.position + _shadow_lift_offset)
 
 

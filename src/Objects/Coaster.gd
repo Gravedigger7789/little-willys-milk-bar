@@ -9,17 +9,17 @@ onready var snap_position: Position2D = $SnapPosition
 
 
 func _on_Coaster_area_entered(area: Draggable) -> void:
-	if (area and !area.is_connected("put_down", self, "_on_Draggable_put_down")):
+	if area and !area.is_connected("put_down", self, "_on_Draggable_put_down"):
 		var _connected = area.connect("put_down", self, "_on_Draggable_put_down")
-	if (area and !area.is_connected("picked_up", self, "_on_Draggable_picked_up")):
+	if area and !area.is_connected("picked_up", self, "_on_Draggable_picked_up"):
 		var _connected = area.connect("picked_up", self, "_on_Draggable_picked_up")
 	_tween_outline(0.0, 1.0)
 
 
 func _on_Coaster_area_exited(area: Draggable) -> void:
-	if (area and area.is_connected("put_down", self, "_on_Draggable_put_down")):
+	if area and area.is_connected("put_down", self, "_on_Draggable_put_down"):
 		area.disconnect("put_down", self, "_on_Draggable_put_down")
-	if (area and !area.is_connected("picked_up", self, "_on_Draggable_picked_up")):
+	if area and !area.is_connected("picked_up", self, "_on_Draggable_picked_up"):
 		area.disconnect("picked_up", self, "_on_Draggable_picked_up")
 	_tween_outline(1.0, 0.0)
 
