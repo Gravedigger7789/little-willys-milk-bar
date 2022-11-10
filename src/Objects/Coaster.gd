@@ -19,7 +19,7 @@ func _on_Coaster_area_entered(area: Area2D) -> void:
 func _on_Coaster_area_exited(area: Area2D) -> void:
 	if area and area.is_connected("put_down", self, "_on_Draggable_put_down"):
 		area.disconnect("put_down", self, "_on_Draggable_put_down")
-	if area and !area.is_connected("picked_up", self, "_on_Draggable_picked_up"):
+	if area and area.is_connected("picked_up", self, "_on_Draggable_picked_up"):
 		area.disconnect("picked_up", self, "_on_Draggable_picked_up")
 	_tween_outline(1.0, 0.0)
 
