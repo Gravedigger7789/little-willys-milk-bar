@@ -40,5 +40,6 @@ func _set_outline_alpha(value: float) -> void:
 func _on_Draggable_put_down(area: Area2D) -> void:
 	area.snap_to_position(snap_position.global_position)
 
+
 func _on_Draggable_picked_up(_area: Area2D) -> void:
 	pass

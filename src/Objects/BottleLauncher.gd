@@ -12,6 +12,7 @@ func _ready() -> void:
 
 func _on_Draggable_put_down(area: Area2D) -> void:
 	._on_Draggable_put_down(area)
+#	area.get_node("CollisionShape2D").disabled = true
 	var sprite_height = area.sprite.texture.get_height() * area.sprite.scale.y
 	launch_bar.rect_position.y = -(launch_bar_offset + sprite_height)
 	launch_bar.toggle(true)

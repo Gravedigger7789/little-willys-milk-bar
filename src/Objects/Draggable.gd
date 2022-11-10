@@ -59,7 +59,6 @@ func snap_to_position(value: Vector2) -> void:
 func _pickup() -> void:
 	emit_signal("picked_up", self)
 	_touch_position_offset = get_global_mouse_position() - global_position
-	monitorable = true
 	_dragging = true
 
 	if sprite.scale == sprite_start_scale or \
@@ -69,7 +68,6 @@ func _pickup() -> void:
 
 func _put_down() -> void:
 	_dragging = false
-	monitorable = false
 	emit_signal("put_down", self)
 
 	# if the mouse is not hovering the draggable when put down, turn off the outline
