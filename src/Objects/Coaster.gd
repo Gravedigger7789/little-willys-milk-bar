@@ -13,7 +13,7 @@ func _on_Coaster_area_entered(area: Area2D) -> void:
 		var _connected = area.connect("put_down", self, "_on_Draggable_put_down")
 	if area and !area.is_connected("picked_up", self, "_on_Draggable_picked_up"):
 		var _connected = area.connect("picked_up", self, "_on_Draggable_picked_up")
-	_tween_outline(0.0, 1.0)
+	_tween_outline(1.0)
 
 
 func _on_Coaster_area_exited(area: Area2D) -> void:
@@ -21,15 +21,15 @@ func _on_Coaster_area_exited(area: Area2D) -> void:
 		area.disconnect("put_down", self, "_on_Draggable_put_down")
 	if area and area.is_connected("picked_up", self, "_on_Draggable_picked_up"):
 		area.disconnect("picked_up", self, "_on_Draggable_picked_up")
-	_tween_outline(1.0, 0.0)
+	_tween_outline(0.0)
 
 
-func _tween_outline(from: float, to: float):
+func _tween_outline(value: float):
 	var tween := create_tween() \
 		.set_trans(Tween.TRANS_LINEAR) \
 		.set_ease(Tween.EASE_OUT)
 	# warning-ignore:return_value_discarded
-	tween.tween_method(self, "_set_outline_alpha", from, to, 0.5)
+	tween.tween_method(self, "_set_outline_alpha", outline_color.a, value, 0.5)
 
 
 func _set_outline_alpha(value: float) -> void:
@@ -39,6 +39,7 @@ func _set_outline_alpha(value: float) -> void:
 
 func _on_Draggable_put_down(area: Area2D) -> void:
 	area.snap_to_position(snap_position.global_position)
+	_tween_outline(0.0)
 
 
 func _on_Draggable_picked_up(_area: Area2D) -> void:
