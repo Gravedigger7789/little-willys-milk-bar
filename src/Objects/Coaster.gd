@@ -25,9 +25,7 @@ func _on_Coaster_area_exited(area: Area2D) -> void:
 
 
 func _tween_outline(value: float):
-	var tween := create_tween() \
-		.set_trans(Tween.TRANS_LINEAR) \
-		.set_ease(Tween.EASE_OUT)
+	var tween := create_tween().set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_OUT)
 	# warning-ignore:return_value_discarded
 	tween.tween_method(self, "_set_outline_alpha", outline_color.a, value, 0.5)
 

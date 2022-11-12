@@ -24,13 +24,18 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if _dragging:
 		var new_position = get_global_mouse_position() - _touch_position_offset
-		if (viewport_bounds.has_point(new_position)):
+		if viewport_bounds.has_point(new_position):
 			_tween_position(new_position)
 
 
 func _input(event: InputEvent) -> void:
-	if _dragging and (event.is_action_released("touch") or \
-		(event is InputEventScreenTouch and !event.is_pressed())):
+	if (
+		_dragging
+		and (
+			event.is_action_released("touch")
+			or (event is InputEventScreenTouch and !event.is_pressed())
+		)
+	):
 		get_tree().set_input_as_handled()
 		_put_down()
 
@@ -61,8 +66,7 @@ func _pickup() -> void:
 	_touch_position_offset = get_global_mouse_position() - global_position
 	_dragging = true
 
-	if sprite.scale == sprite_start_scale or \
-		sprite_shadow.position == sprite_shadow_start_position:
+	if sprite.scale == sprite_start_scale or sprite_shadow.position == sprite_shadow_start_position:
 		_tween_scale_and_shadows(sprite_lift_scale, sprite_shadow.position + _shadow_lift_offset)
 
 
@@ -74,24 +78,19 @@ func _put_down() -> void:
 	if !get_viewport_rect().has_point(get_global_mouse_position()):
 		_tween_outline(0.0)
 
-	if sprite.scale != sprite_start_scale or \
-		sprite_shadow.position != sprite_shadow_start_position:
+	if sprite.scale != sprite_start_scale or sprite_shadow.position != sprite_shadow_start_position:
 		_tween_scale_and_shadows(sprite_start_scale, sprite_shadow_start_position)
 
 
 func _tween_position(value: Vector2) -> void:
-	var tween := create_tween() \
-		.set_trans(Tween.TRANS_SINE) \
-		.set_ease(Tween.EASE_OUT)
+	var tween := create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	# warning-ignore:return_value_discarded
 	tween.tween_property(self, "global_position", value, 0.15)
 
 
 func _tween_scale_and_shadows(sprite_scale: Vector2, shadow_offset: Vector2) -> void:
-		var tween := create_tween() \
-			.set_trans(Tween.TRANS_SINE) \
-			.set_ease(Tween.EASE_OUT)
-		# warning-ignore:return_value_discarded
-		tween.tween_property(sprite, "scale", sprite_scale, 0.15)
-		# warning-ignore:return_value_discarded
-		tween.parallel().tween_property(sprite_shadow, "position", shadow_offset, 0.15)
+	var tween := create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	# warning-ignore:return_value_discarded
+	tween.tween_property(sprite, "scale", sprite_scale, 0.15)
+	# warning-ignore:return_value_discarded
+	tween.parallel().tween_property(sprite_shadow, "position", shadow_offset, 0.15)

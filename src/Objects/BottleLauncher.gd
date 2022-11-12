@@ -1,6 +1,5 @@
 extends Coaster
 
-
 var launch_bar_offset = 64
 
 onready var launch_bar: Control = $LaunchBar
