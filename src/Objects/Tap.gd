@@ -1,8 +1,6 @@
 tool
 extends Node2D
 
-export(String, "Berry", "Chocolate", "Regular") var handle_type: String = "Chocolate" setget set_handle_type
-
 const HANDLE_DICT := {
 	"Berry": preload("res://assets/tap/milk-tap-handle-berry.png"),
 	"Chocolate": preload("res://assets/tap/milk-tap-handle-choco.png"),
@@ -10,6 +8,8 @@ const HANDLE_DICT := {
 }
 const SPOUT_TEXTURE := preload("res://assets/tap/milk-tap-spout-straight.png")
 const SPOUT_TILTED_TEXTURE := preload("res://assets/tap/milk-tap-spout-tilt.png")
+
+export(String, "Berry", "Chocolate", "Regular") var handle_type: String = "Chocolate" setget set_handle_type
 
 var pouring := false
 
