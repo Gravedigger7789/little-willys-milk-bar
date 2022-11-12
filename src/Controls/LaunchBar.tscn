@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://src/Controls/LaunchBar.gd" type="Script" id=1]
+
+[sub_resource type="Gradient" id=2]
+resource_local_to_scene = true
+offsets = PoolRealArray( 0, 0.507538, 1 )
+colors = PoolColorArray( 0, 1, 0, 1, 1, 1, 0, 1, 1, 0, 0, 1 )
+
+[sub_resource type="Gradient" id=5]
+offsets = PoolRealArray( 0.00584795, 1 )
+colors = PoolColorArray( 0.196078, 0.196078, 0.196078, 1, 0.196078, 0.196078, 0.196078, 1 )
+
+[sub_resource type="GradientTexture2D" id=6]
+gradient = SubResource( 5 )
+width = 200
+height = 32
+
+[sub_resource type="Gradient" id=4]
+offsets = PoolRealArray( 0.315789, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture2D" id=3]
+gradient = SubResource( 4 )
+width = 200
+height = 32
+fill_from = Vector2( 1, 0 )
+fill_to = Vector2( 0, 0 )
+
+[node name="LaunchBar" type="Control"]
+mouse_filter = 2
+script = ExtResource( 1 )
+gradient = SubResource( 2 )
+
+[node name="TextureProgress" type="TextureProgress" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -100.0
+margin_top = -16.0
+margin_right = 100.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 200, 32 )
+mouse_filter = 2
+value = 50.0
+texture_under = SubResource( 6 )
+texture_progress = SubResource( 3 )
+
+[connection signal="value_changed" from="TextureProgress" to="." method="_on_TextureProgress_value_changed"]

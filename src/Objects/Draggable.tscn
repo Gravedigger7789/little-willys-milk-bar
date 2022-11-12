@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://src/Shaders/Outline.gdshader" type="Shader" id=1]
+[ext_resource path="res://src/Objects/Coaster.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/Objects/Draggable.gd" type="Script" id=3]
+
+[sub_resource type="ShaderMaterial" id=1]
+resource_local_to_scene = true
+shader = ExtResource( 1 )
+shader_param/outline_color = Color( 1, 1, 1, 0 )
+shader_param/width = 3.0
+
+[sub_resource type="RectangleShape2D" id=2]
+resource_local_to_scene = true
+extents = Vector2( 32, 32 )
+
+[node name="Draggable" instance=ExtResource( 2 )]
+collision_layer = 1
+collision_mask = 0
+input_pickable = true
+monitorable = true
+script = ExtResource( 3 )
+
+[node name="SpriteShadow" type="Sprite" parent="." index="0"]
+modulate = Color( 0, 0, 0, 0.588235 )
+
+[node name="Sprite" parent="." index="1"]
+material = SubResource( 1 )
+
+[node name="CollisionShape2D" parent="." index="2"]
+shape = SubResource( 2 )
+
+[connection signal="input_event" from="." to="." method="_on_Draggable_input_event"]
+[connection signal="mouse_entered" from="." to="." method="_on_Draggable_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_Draggable_mouse_exited"]
