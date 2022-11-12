@@ -13,8 +13,8 @@ script = ExtResource( 3 )
 
 [node name="Handle" type="Area2D" parent="."]
 position = Vector2( 0, -30 )
-monitoring = false
-monitorable = false
+collision_layer = 8
+collision_mask = 8
 
 [node name="Sprite" type="Sprite" parent="Handle"]
 position = Vector2( 0, -122 )
