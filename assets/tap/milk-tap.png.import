@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/milk-tap-berry.png-b4f415a1515a7c2b72b609756c8dfb5e.stex"
+path="res://.import/milk-tap.png-28dcb98b5646974797a7b5681a54d2c2.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tap/milk-tap-berry.png"
-dest_files=[ "res://.import/milk-tap-berry.png-b4f415a1515a7c2b72b609756c8dfb5e.stex" ]
+source_file="res://assets/tap/milk-tap.png"
+dest_files=[ "res://.import/milk-tap.png-28dcb98b5646974797a7b5681a54d2c2.stex" ]
 
 [params]
 

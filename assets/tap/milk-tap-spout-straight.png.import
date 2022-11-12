@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/milk-tap-norm.png-e4ca45ec3ad8342057909f0663778e3e.stex"
+path="res://.import/milk-tap-spout-straight.png-7ababc064c5f37ae71f2c9852af8be12.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tap/milk-tap-norm.png"
-dest_files=[ "res://.import/milk-tap-norm.png-e4ca45ec3ad8342057909f0663778e3e.stex" ]
+source_file="res://assets/tap/milk-tap-spout-straight.png"
+dest_files=[ "res://.import/milk-tap-spout-straight.png-7ababc064c5f37ae71f2c9852af8be12.stex" ]
 
 [params]
 

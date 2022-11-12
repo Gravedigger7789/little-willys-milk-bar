@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/milk-tap-choco.png-2c52afbc3850b3d29fbd7a8ddd16fe78.stex"
+path="res://.import/bottle-empty.png-087a75ae53950bd2004badea8946a675.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tap/milk-tap-choco.png"
-dest_files=[ "res://.import/milk-tap-choco.png-2c52afbc3850b3d29fbd7a8ddd16fe78.stex" ]
+source_file="res://assets/bottle/bottle-empty.png"
+dest_files=[ "res://.import/bottle-empty.png-087a75ae53950bd2004badea8946a675.stex" ]
 
 [params]
 
