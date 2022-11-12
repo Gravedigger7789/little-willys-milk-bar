@@ -13,7 +13,7 @@ shader_param/width = 3.0
 
 [sub_resource type="RectangleShape2D" id=2]
 resource_local_to_scene = true
-extents = Vector2( 34, 79 )
+extents = Vector2( 40, 94 )
 
 [node name="Bottle" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
@@ -26,7 +26,7 @@ texture = ExtResource( 4 )
 shape = SubResource( 2 )
 
 [node name="SnapPosition" parent="." index="3"]
-position = Vector2( 0, 75 )
+position = Vector2( 0, 88 )
 
 [node name="TopSnapPosition" type="Position2D" parent="." index="4"]
-position = Vector2( 0, -65 )
+position = Vector2( 0, -76 )
