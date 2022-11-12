@@ -1,10 +1,9 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/Objects/Bottle.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/bar/bar-back.png" type="Texture" id=2]
 [ext_resource path="res://World.gd" type="Script" id=3]
 [ext_resource path="res://src/Objects/BottleCap.tscn" type="PackedScene" id=4]
-[ext_resource path="res://src/Objects/Coaster.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/Objects/BottleLauncher.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/background/background.png" type="Texture" id=7]
 [ext_resource path="res://assets/bar/bartop.png" type="Texture" id=8]
@@ -62,17 +61,6 @@ handle_type = "Regular"
 [node name="Tap3" parent="Bar" instance=ExtResource( 11 )]
 position = Vector2( 448, 544 )
 handle_type = "Berry"
-
-[node name="Coasters" type="Node2D" parent="."]
-
-[node name="Coaster" parent="Coasters" instance=ExtResource( 5 )]
-position = Vector2( 192, 864 )
-
-[node name="Coaster2" parent="Coasters" instance=ExtResource( 5 )]
-position = Vector2( 320, 864 )
-
-[node name="Coaster3" parent="Coasters" instance=ExtResource( 5 )]
-position = Vector2( 448, 864 )
 
 [node name="BottleLauncher" parent="." instance=ExtResource( 6 )]
 position = Vector2( 1760, 864 )
