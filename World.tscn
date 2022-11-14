@@ -52,40 +52,40 @@ position = Vector2( 1140, 907 )
 texture = ExtResource( 8 )
 
 [node name="Tap" parent="Bar" instance=ExtResource( 11 )]
-position = Vector2( 192, 544 )
+position = Vector2( 192, 512 )
 
 [node name="Tap2" parent="Bar" instance=ExtResource( 11 )]
-position = Vector2( 320, 544 )
+position = Vector2( 432, 512 )
 handle_type = "Regular"
 
 [node name="Tap3" parent="Bar" instance=ExtResource( 11 )]
-position = Vector2( 448, 544 )
+position = Vector2( 672, 512 )
 handle_type = "Berry"
 
 [node name="BottleLauncher" parent="." instance=ExtResource( 6 )]
-position = Vector2( 1760, 864 )
+position = Vector2( 2048, 864 )
 input_pickable = true
 
 [node name="Bottles" type="Node2D" parent="."]
 
 [node name="Bottle" parent="Bottles" instance=ExtResource( 1 )]
-position = Vector2( 800, 800 )
+position = Vector2( 848, 720 )
 
 [node name="Bottle2" parent="Bottles" instance=ExtResource( 1 )]
-position = Vector2( 1120, 800 )
+position = Vector2( 1200, 720 )
 
 [node name="Bottle3" parent="Bottles" instance=ExtResource( 1 )]
-position = Vector2( 960, 800 )
+position = Vector2( 1024, 720 )
 
 [node name="BottleCaps" type="Node2D" parent="."]
 
 [node name="BottleCap" parent="BottleCaps" instance=ExtResource( 4 )]
-position = Vector2( 1280, 864 )
+position = Vector2( 1408, 864 )
 color = "Green"
 
 [node name="BottleCap2" parent="BottleCaps" instance=ExtResource( 4 )]
-position = Vector2( 1408, 832 )
+position = Vector2( 1648, 864 )
 
 [node name="BottleCap3" parent="BottleCaps" instance=ExtResource( 4 )]
-position = Vector2( 1536, 864 )
+position = Vector2( 1872, 864 )
 color = "Red"
