@@ -13,8 +13,7 @@ colors = PoolColorArray( 0.196078, 0.196078, 0.196078, 1, 0.196078, 0.196078, 0.
 
 [sub_resource type="GradientTexture2D" id=6]
 gradient = SubResource( 5 )
-width = 200
-height = 32
+width = 400
 
 [sub_resource type="Gradient" id=4]
 offsets = PoolRealArray( 0.315789, 1 )
@@ -22,8 +21,7 @@ colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 1 )
 
 [sub_resource type="GradientTexture2D" id=3]
 gradient = SubResource( 4 )
-width = 200
-height = 32
+width = 400
 fill_from = Vector2( 1, 0 )
 fill_to = Vector2( 0, 0 )
 
@@ -37,11 +35,11 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -100.0
-margin_top = -16.0
-margin_right = 100.0
-margin_bottom = 16.0
-rect_min_size = Vector2( 200, 32 )
+margin_left = -200.0
+margin_top = -32.0
+margin_right = 200.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 400, 64 )
 mouse_filter = 2
 value = 50.0
 texture_under = SubResource( 6 )

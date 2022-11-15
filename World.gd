@@ -1,6 +1,6 @@
-extends Node2D
+extends Node
 
-var held_object: Node2D = null
+#var held_object: Node2D = null
 
 #func _ready() -> void:
 #	for node in get_tree().get_nodes_in_group("pickable"):

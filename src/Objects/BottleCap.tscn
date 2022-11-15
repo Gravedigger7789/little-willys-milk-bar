@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/Objects/Draggable.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Objects/BottleCap.gd" type="Script" id=2]
 [ext_resource path="res://src/Shaders/Outline.gdshader" type="Shader" id=3]
+[ext_resource path="res://assets/bottle/bottle-lid-blue.png" type="Texture" id=4]
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
@@ -12,16 +13,26 @@ shader_param/width = 3.0
 
 [sub_resource type="RectangleShape2D" id=2]
 resource_local_to_scene = true
-extents = Vector2( 32, 32 )
+extents = Vector2( 72, 76 )
 
 [node name="BottleCap" instance=ExtResource( 1 )]
 collision_layer = 2
 collision_mask = 1
 monitoring = false
 script = ExtResource( 2 )
+color = "Blue"
+
+[node name="SpriteShadow" parent="." index="0"]
+texture = ExtResource( 4 )
 
 [node name="Sprite" parent="." index="1"]
 material = SubResource( 1 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 4 )
 
 [node name="CollisionShape2D" parent="." index="2"]
+position = Vector2( 0, -64 )
 shape = SubResource( 2 )
+
+[node name="SnapPosition" parent="." index="3"]
+position = Vector2( 0, 6 )
