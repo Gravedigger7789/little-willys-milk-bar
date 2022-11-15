@@ -12,6 +12,7 @@ const SPOUT_TILTED_TEXTURE := preload("res://assets/tap/milk-tap-spout-tilt.png"
 export(String, "Berry", "Chocolate", "Regular") var handle_type: String = "Chocolate" setget set_handle_type
 
 var pouring := false
+var bottle: Area2D
 
 onready var handle: Area2D = $Handle
 onready var handle_sprite: Sprite = $Handle/Sprite
@@ -40,6 +41,11 @@ func _on_Handle_input_event(_viewport: Node, event: InputEvent, _shape_idx: int)
 			_toggle_pour()
 
 
+func _physics_process(delta: float) -> void:
+	if pouring and bottle:
+		bottle.fill(delta * 100)
+
+
 func _toggle_pour() -> void:
 	if !pouring:
 		pouring = true
@@ -49,3 +55,19 @@ func _toggle_pour() -> void:
 		pouring = false
 		handle.rotate(deg2rad(30))
 		spout.texture = SPOUT_TEXTURE
+
+
+func _on_BottleDetector_area_entered(area: Area2D) -> void:
+	bottle = area
+	if bottle and !bottle.is_connected("bottle_filled", self, "_on_Bottle_filled"):
+		var _connected = bottle.connect("bottle_filled", self, "_on_Bottle_filled")
+
+
+func _on_BottleDetector_area_exited(_area: Area2D) -> void:
+	if bottle and bottle.is_connected("bottle_filled", self, "_on_Bottle_filled"):
+		bottle.disconnect("bottle_filled", self, "_on_Bottle_filled")
+	bottle = null
+
+
+func _on_Bottle_filled() -> void:
+	_toggle_pour()

@@ -25,7 +25,9 @@ func _process(_delta: float) -> void:
 	if _dragging:
 		var new_position = get_global_mouse_position() - _touch_position_offset
 		if viewport_bounds.has_point(new_position):
-			_tween_position(new_position)
+			if global_position.distance_to(new_position) > 0.01:
+				_tween_position(new_position)
+				_moved_object()
 
 
 func _input(event: InputEvent) -> void:
@@ -94,3 +96,7 @@ func _tween_scale_and_shadows(sprite_scale: Vector2, shadow_offset: Vector2) -> 
 	tween.tween_property(sprite, "scale", sprite_scale, 0.15)
 	# warning-ignore:return_value_discarded
 	tween.parallel().tween_property(sprite_shadow, "position", shadow_offset, 0.15)
+
+
+func _moved_object() -> void:
+	pass
