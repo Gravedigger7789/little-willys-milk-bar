@@ -69,10 +69,10 @@ func _on_BottleDetector_area_entered(area: Area2D) -> void:
 			var _connected = bottle.connect("bottle_filled", self, "_on_Bottle_filled")
 
 
-func _on_BottleDetector_area_exited(_area: Area2D) -> void:
-	if bottle and bottle.is_connected("bottle_filled", self, "_on_Bottle_filled"):
+func _on_BottleDetector_area_exited(area: Area2D) -> void:
+	if bottle and bottle == area and bottle.is_connected("bottle_filled", self, "_on_Bottle_filled"):
 		bottle.disconnect("bottle_filled", self, "_on_Bottle_filled")
-	bottle = null
+		bottle = null
 
 
 func _on_Bottle_filled() -> void:
