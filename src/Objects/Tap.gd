@@ -6,6 +6,11 @@ const HANDLE_DICT := {
 	"Chocolate": preload("res://assets/tap/milk-tap-handle-choco.png"),
 	"Regular": preload("res://assets/tap/milk-tap-handle-reg.png"),
 }
+const COLOR_DICT := {
+	"Berry": Color.pink,
+	"Chocolate": Color8(93, 51, 35),
+	"Regular": Color.white,
+}
 const SPOUT_TEXTURE := preload("res://assets/tap/milk-tap-spout-straight.png")
 const SPOUT_TILTED_TEXTURE := preload("res://assets/tap/milk-tap-spout-tilt.png")
 
@@ -17,7 +22,7 @@ var bottle: Area2D
 onready var handle: Area2D = $Handle
 onready var handle_sprite: Sprite = $Handle/Sprite
 onready var spout: Sprite = $Spout
-
+onready var bottle_detector: Area2D = $BottleDetector
 
 func _ready() -> void:
 	set_handle_type(handle_type)
@@ -25,7 +30,7 @@ func _ready() -> void:
 
 func set_handle_type(value: String) -> void:
 	handle_type = value
-	if is_inside_tree():
+	if is_inside_tree() and handle_sprite:
 		handle_sprite.texture = HANDLE_DICT[handle_type]
 
 
@@ -36,14 +41,14 @@ func _on_Handle_input_event(_viewport: Node, event: InputEvent, _shape_idx: int)
 		for area in areas:
 			if not is_greater_than(area) and area.is_visible_in_tree():
 				is_on_top = false
-		if is_on_top:
+		if is_on_top and bottle and !pouring:
 			get_tree().set_input_as_handled()
 			_toggle_pour()
 
 
 func _physics_process(delta: float) -> void:
 	if pouring and bottle:
-		bottle.fill(delta * 100)
+		bottle.fill(delta * 100, COLOR_DICT[handle_type], HANDLE_DICT[handle_type])
 
 
 func _toggle_pour() -> void:
@@ -58,9 +63,10 @@ func _toggle_pour() -> void:
 
 
 func _on_BottleDetector_area_entered(area: Area2D) -> void:
-	bottle = area
-	if bottle and !bottle.is_connected("bottle_filled", self, "_on_Bottle_filled"):
-		var _connected = bottle.connect("bottle_filled", self, "_on_Bottle_filled")
+	if !bottle:
+		bottle = area
+		if bottle and !bottle.is_connected("bottle_filled", self, "_on_Bottle_filled"):
+			var _connected = bottle.connect("bottle_filled", self, "_on_Bottle_filled")
 
 
 func _on_BottleDetector_area_exited(_area: Area2D) -> void:

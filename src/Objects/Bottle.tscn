@@ -3,7 +3,7 @@
 [ext_resource path="res://src/Objects/Draggable.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Objects/Bottle.gd" type="Script" id=2]
 [ext_resource path="res://src/Shaders/Outline.gdshader" type="Shader" id=3]
-[ext_resource path="res://assets/bottle/milk.png" type="Texture" id=4]
+[ext_resource path="res://assets/bottle/bottle-milk.png" type="Texture" id=4]
 [ext_resource path="res://assets/bottle/bottle-empty.png" type="Texture" id=5]
 
 [sub_resource type="Shader" id=7]
@@ -67,6 +67,26 @@ tracks/0/keys = {
 "update": 0,
 "values": [ false ]
 }
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("BackBufferCopy/MilkType:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("BackBufferCopy/MilkType:position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
 
 [node name="Bottle" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
@@ -77,13 +97,15 @@ rect = Rect2( -100, -160, 200, 600 )
 
 [node name="Milk" type="Sprite" parent="BackBufferCopy" index="0"]
 position = Vector2( -9.09495e-13, 272 )
-scale = Vector2( 1.75, 1.75 )
 texture = ExtResource( 4 )
 
 [node name="MilkMask" type="Sprite" parent="BackBufferCopy" index="1"]
 material = SubResource( 8 )
 position = Vector2( 0, 312 )
 texture = SubResource( 6 )
+
+[node name="MilkType" type="Sprite" parent="BackBufferCopy" index="2"]
+scale = Vector2( 0.25, 0.25 )
 
 [node name="Sprite" parent="." index="2"]
 material = SubResource( 1 )

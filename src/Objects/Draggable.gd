@@ -6,6 +6,7 @@ signal picked_up
 signal put_down
 
 var _dragging := false
+var _draggable := true
 var _touch_position_offset := Vector2()
 var _shadow_lift_offset := Vector2(15, 15)
 
@@ -22,7 +23,7 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	if _dragging:
+	if _draggable and _dragging:
 		var new_position = get_global_mouse_position() - _touch_position_offset
 		if viewport_bounds.has_point(new_position):
 			if global_position.distance_to(new_position) > 0.01:
@@ -49,12 +50,12 @@ func _on_Draggable_input_event(_viewport: Node, event: InputEvent, _shape_idx: i
 
 
 func _on_Draggable_mouse_entered() -> void:
-	if !_dragging:
+	if _draggable and !_dragging:
 		_tween_outline(1.0)
 
 
 func _on_Draggable_mouse_exited() -> void:
-	if !_dragging:
+	if _draggable and !_dragging:
 		_tween_outline(0.0)
 
 
