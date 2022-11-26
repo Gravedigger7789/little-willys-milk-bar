@@ -1,0 +1,22 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/baby/baby-hair-3.png" type="Texture" id=1]
+[ext_resource path="res://assets/baby/baby-arms-open.png" type="Texture" id=2]
+[ext_resource path="res://assets/baby/baby-body.png" type="Texture" id=3]
+[ext_resource path="res://assets/baby/baby-face-happy.png" type="Texture" id=4]
+[ext_resource path="res://src/Characters/Baby.gd" type="Script" id=5]
+
+[node name="Baby" type="Node2D"]
+script = ExtResource( 5 )
+
+[node name="Body" type="Sprite" parent="."]
+texture = ExtResource( 3 )
+
+[node name="Arms" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="Face" type="Sprite" parent="."]
+texture = ExtResource( 4 )
+
+[node name="Hair" type="Sprite" parent="."]
+texture = ExtResource( 1 )
