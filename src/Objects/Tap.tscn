@@ -29,7 +29,6 @@ shape = SubResource( 1 )
 
 [node name="Spout" type="Sprite" parent="."]
 position = Vector2( -12, 0 )
-scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 __meta__ = {
 "_edit_lock_": true
