@@ -9,6 +9,7 @@ var _dragging := false
 var _draggable := true
 var _touch_position_offset := Vector2()
 var _shadow_lift_offset := Vector2(15, 15)
+var _start_position := Vector2()
 
 onready var sprite_start_scale := sprite.scale
 onready var sprite_lift_scale := sprite_start_scale + Vector2(0.1, 0.1)
@@ -20,6 +21,7 @@ onready var viewport_bounds: Rect2 = get_viewport().get_visible_rect()
 func _ready() -> void:
 	sprite_shadow.texture = sprite.texture
 	sprite_shadow.scale = sprite.scale
+	_start_position = global_position
 
 
 func _process(_delta: float) -> void:

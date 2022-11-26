@@ -67,29 +67,29 @@ position = Vector2( 240, -192 )
 handle_type = "Berry"
 
 [node name="BottleLauncher" parent="." instance=ExtResource( 6 )]
-position = Vector2( 832, 880 )
+position = Vector2( 928, 864 )
 input_pickable = true
 
 [node name="Bottles" type="Node2D" parent="."]
 
 [node name="Bottle" parent="Bottles" instance=ExtResource( 1 )]
-position = Vector2( 320, 1120 )
+position = Vector2( 464, 1120 )
 
 [node name="Bottle2" parent="Bottles" instance=ExtResource( 1 )]
-position = Vector2( 192, 1120 )
+position = Vector2( 320, 1120 )
 
 [node name="Bottle3" parent="Bottles" instance=ExtResource( 1 )]
-position = Vector2( 64, 1120 )
+position = Vector2( 176, 1120 )
 
 [node name="BottleCaps" type="Node2D" parent="."]
 
 [node name="BottleCap" parent="BottleCaps" instance=ExtResource( 4 )]
-position = Vector2( 1872, 1056 )
+position = Vector2( 1776, 1056 )
 color = "Green"
 
 [node name="BottleCap2" parent="BottleCaps" instance=ExtResource( 4 )]
-position = Vector2( 2032, 1056 )
+position = Vector2( 1936, 1056 )
 
 [node name="BottleCap3" parent="BottleCaps" instance=ExtResource( 4 )]
-position = Vector2( 2208, 1056 )
+position = Vector2( 2112, 1056 )
 color = "Red"

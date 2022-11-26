@@ -1,10 +1,11 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://src/Objects/Draggable.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Objects/Bottle.gd" type="Script" id=2]
 [ext_resource path="res://src/Shaders/Outline.gdshader" type="Shader" id=3]
 [ext_resource path="res://assets/bottle/bottle-milk.png" type="Texture" id=4]
 [ext_resource path="res://assets/bottle/bottle-empty.png" type="Texture" id=5]
+[ext_resource path="res://assets/bottle/bottle-lid-blue.png" type="Texture" id=6]
 
 [sub_resource type="Shader" id=7]
 code = "shader_type canvas_item;
@@ -118,6 +119,9 @@ tracks/2/keys = {
 [node name="Bottle" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 
+[node name="Top" type="Sprite" parent="SpriteShadow" index="0"]
+position = Vector2( 0, -134 )
+
 [node name="BackBufferCopy" type="BackBufferCopy" parent="." index="1"]
 copy_mode = 2
 rect = Rect2( -100, -160, 200, 600 )
@@ -141,7 +145,13 @@ __meta__ = {
 "_edit_lock_": true
 }
 
+[node name="Top" type="Sprite" parent="Sprite" index="0"]
+visible = false
+position = Vector2( 0, -134 )
+texture = ExtResource( 6 )
+
 [node name="CollisionShape2D" parent="." index="3"]
+visible = false
 shape = SubResource( 2 )
 __meta__ = {
 "_edit_lock_": true

@@ -14,20 +14,15 @@ onready var animation_player: AnimationPlayer = $AnimationPlayer
 onready var milk_move_distance = milk.position.y - sprite.position.y
 onready var milk_type: Sprite = $BackBufferCopy/MilkType
 onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
+onready var top: Sprite = $Sprite/Top
+onready var top_shadow: Sprite = $SpriteShadow/Top
 
 
 func _on_Draggable_put_down(area: Area2D) -> void:
-	area.snap_to_position(top_snap_position.global_position)
-	area.get_parent().remove_child(area)
-	area.get_node("CollisionShape2D").disabled = true
-	sprite.add_child(area)
+	top.texture = area.sprite.texture
+	top_shadow.texture = top.texture
+	top.visible = true
 	closed = true
-
-#func _on_Draggable_picked_up(area: Area2D) -> void:
-#	area.position = area.global_position
-#	remove_child(area)
-#	var bottle_caps_node = get_tree().get_root().get_node("World/BottleCaps")
-#	bottle_caps_node.add_child(area)
 
 
 func _moved_object() -> void:
@@ -54,6 +49,7 @@ func push(distance: Vector2, strength: float) -> void:
 		tween.tween_property(self, "position", position + distance, strength)
 		var _connected = tween.connect("finished", self, "_on_Bottle_Finish_Push")
 		animation_player.play("Fill")
+
 
 func _on_Bottle_Finish_Push() -> void:
 	if closed:
