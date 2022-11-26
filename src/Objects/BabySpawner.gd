@@ -9,7 +9,7 @@ onready var spawn_position: Position2D = $SpawnPosition
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	spawn_timer.start(rand_range(0.25, 5.0))
+	spawn_timer.start(rand_range(1, 5.0))
 
 
 func _on_SpawnTimer_timeout() -> void:

@@ -68,13 +68,13 @@ input_pickable = true
 [node name="Bottles" type="Node2D" parent="."]
 
 [node name="Bottle" parent="Bottles" instance=ExtResource( 1 )]
-position = Vector2( 1104, 928 )
+position = Vector2( 1088, 1088 )
 
 [node name="Bottle2" parent="Bottles" instance=ExtResource( 1 )]
-position = Vector2( 848, 928 )
+position = Vector2( 832, 1088 )
 
 [node name="Bottle3" parent="Bottles" instance=ExtResource( 1 )]
-position = Vector2( 976, 928 )
+position = Vector2( 960, 1088 )
 
 [node name="BottleCaps" type="Node2D" parent="."]
 
