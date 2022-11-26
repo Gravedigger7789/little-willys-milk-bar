@@ -1,13 +1,24 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/tap/milk-tap-handle-choco.png" type="Texture" id=1]
 [ext_resource path="res://assets/tap/milk-tap-spout-straight.png" type="Texture" id=2]
 [ext_resource path="res://src/Objects/Tap.gd" type="Script" id=3]
 [ext_resource path="res://src/Objects/Coaster.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/tap/milk-pour.png" type="Texture" id=5]
+[ext_resource path="res://src/Shaders/Outline.gdshader" type="Shader" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 100, 254 )
+
+[sub_resource type="ShaderMaterial" id=5]
+resource_local_to_scene = true
+shader = ExtResource( 6 )
+shader_param/outline_color = Color( 1, 1, 1, 0 )
+shader_param/width = 3.0
+
+[sub_resource type="RectangleShape2D" id=6]
+resource_local_to_scene = true
+extents = Vector2( 64, 160 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 32, 181 )
@@ -99,6 +110,13 @@ texture = ExtResource( 5 )
 [node name="Coaster" parent="." instance=ExtResource( 4 )]
 position = Vector2( 0, 360 )
 
+[node name="Sprite" parent="Coaster" index="0"]
+material = SubResource( 5 )
+
+[node name="CollisionShape2D" parent="Coaster" index="1"]
+position = Vector2( 0, -128 )
+shape = SubResource( 6 )
+
 [node name="BottleDetector" type="Area2D" parent="."]
 collision_layer = 0
 monitorable = false
@@ -114,3 +132,5 @@ anims/RESET = SubResource( 4 )
 [connection signal="input_event" from="Handle" to="." method="_on_Handle_input_event"]
 [connection signal="area_entered" from="BottleDetector" to="." method="_on_BottleDetector_area_entered"]
 [connection signal="area_exited" from="BottleDetector" to="." method="_on_BottleDetector_area_exited"]
+
+[editable path="Coaster"]
