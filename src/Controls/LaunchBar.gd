@@ -4,7 +4,6 @@ signal activated(strength)
 
 export(Gradient) var gradient
 export(int) var bar_fill_speed := 100
-export(int) var initial_value := 0
 
 var hit_min = true
 var active = true
@@ -31,7 +30,7 @@ func _on_TextureProgress_value_changed(_value: float) -> void:
 func toggle(value: bool) -> void:
 	active = value
 	visible = value
-	texture_progress.value = initial_value
+	texture_progress.value = rand_range(25, 75)
 
 
 func stop() -> void:
