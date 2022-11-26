@@ -96,7 +96,7 @@ copy_mode = 2
 rect = Rect2( -100, -160, 200, 600 )
 
 [node name="Milk" type="Sprite" parent="BackBufferCopy" index="0"]
-position = Vector2( -9.09495e-13, 272 )
+position = Vector2( 0, 280 )
 texture = ExtResource( 4 )
 
 [node name="MilkMask" type="Sprite" parent="BackBufferCopy" index="1"]
