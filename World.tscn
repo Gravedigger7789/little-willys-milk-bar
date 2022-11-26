@@ -4,10 +4,10 @@
 [ext_resource path="res://assets/bar/bar-back.png" type="Texture" id=2]
 [ext_resource path="res://World.gd" type="Script" id=3]
 [ext_resource path="res://src/Objects/BottleCap.tscn" type="PackedScene" id=4]
-[ext_resource path="res://src/Objects/BabySpawner.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/Objects/BottleLauncher.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/background/background.png" type="Texture" id=7]
 [ext_resource path="res://assets/bar/bartop.png" type="Texture" id=8]
+[ext_resource path="res://src/Objects/BabySpawner.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/Objects/Tap.tscn" type="PackedScene" id=11]
 
 [node name="World" type="Node"]
@@ -31,14 +31,14 @@ texture = ExtResource( 7 )
 
 [node name="Stools" type="Node2D" parent="Bar"]
 
-[node name="BabySpawner" parent="Bar/Stools" instance=ExtResource( 5 )]
-position = Vector2( 2032, 736 )
+[node name="BabySpawner" parent="Bar/Stools" instance=ExtResource( 9 )]
+position = Vector2( 1952, 736 )
 
-[node name="BabySpawner2" parent="Bar/Stools" instance=ExtResource( 5 )]
-position = Vector2( 1648, 736 )
+[node name="BabySpawner2" parent="Bar/Stools" instance=ExtResource( 9 )]
+position = Vector2( 1568, 736 )
 
-[node name="BabySpawner3" parent="Bar/Stools" instance=ExtResource( 5 )]
-position = Vector2( 1264, 736 )
+[node name="BabySpawner3" parent="Bar/Stools" instance=ExtResource( 9 )]
+position = Vector2( 1184, 736 )
 
 [node name="Babies" type="Node2D" parent="Bar"]
 
@@ -68,10 +68,10 @@ input_pickable = true
 [node name="Bottles" type="Node2D" parent="."]
 
 [node name="Bottle" parent="Bottles" instance=ExtResource( 1 )]
-position = Vector2( 1088, 1088 )
+position = Vector2( 1216, 1088 )
 
 [node name="Bottle2" parent="Bottles" instance=ExtResource( 1 )]
-position = Vector2( 832, 1088 )
+position = Vector2( 1088, 1088 )
 
 [node name="Bottle3" parent="Bottles" instance=ExtResource( 1 )]
 position = Vector2( 960, 1088 )

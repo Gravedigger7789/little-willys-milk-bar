@@ -87,3 +87,7 @@ func _on_HappyTimer_timeout() -> void:
 	else:
 		emit_signal("satisfied", happiness_level)
 		queue_free()
+
+
+func _on_Baby_area_entered(area: Area2D) -> void:
+	pass

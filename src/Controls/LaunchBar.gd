@@ -1,6 +1,6 @@
 extends Control
 
-signal activated
+signal activated(strength)
 
 export(Gradient) var gradient
 export(int) var bar_fill_speed := 100
