@@ -2,7 +2,8 @@ extends Node
 
 #var held_object: Node2D = null
 
-#func _ready() -> void:
+func _ready() -> void:
+	randomize()
 #	for node in get_tree().get_nodes_in_group("pickable"):
 #		node.connect("touched", self, "_on_pickable_clicked")
 
