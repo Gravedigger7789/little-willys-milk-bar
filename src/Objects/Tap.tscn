@@ -1,15 +1,71 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/tap/milk-tap-handle-choco.png" type="Texture" id=1]
 [ext_resource path="res://assets/tap/milk-tap-spout-straight.png" type="Texture" id=2]
 [ext_resource path="res://src/Objects/Tap.gd" type="Script" id=3]
 [ext_resource path="res://src/Objects/Coaster.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/tap/milk-pour.png" type="Texture" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 100, 254 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 32, 181 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "Pour"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Spout/Pour:flip_h")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Spout/Pour:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.25, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 16, 225 ), Vector2( 8, 225 ), Vector2( 16, 225 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Spout/Pour:flip_h")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Spout/Pour:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 16, 225 ) ]
+}
 
 [node name="Tap" type="Node2D"]
 script = ExtResource( 3 )
@@ -34,6 +90,12 @@ __meta__ = {
 "_edit_lock_": true
 }
 
+[node name="Pour" type="Sprite" parent="Spout"]
+visible = false
+show_behind_parent = true
+position = Vector2( 16, 225 )
+texture = ExtResource( 5 )
+
 [node name="Coaster" parent="." instance=ExtResource( 4 )]
 position = Vector2( 0, 360 )
 
@@ -44,6 +106,10 @@ monitorable = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BottleDetector"]
 position = Vector2( 0, 171 )
 shape = SubResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Pour = SubResource( 3 )
+anims/RESET = SubResource( 4 )
 
 [connection signal="input_event" from="Handle" to="." method="_on_Handle_input_event"]
 [connection signal="area_entered" from="BottleDetector" to="." method="_on_BottleDetector_area_entered"]

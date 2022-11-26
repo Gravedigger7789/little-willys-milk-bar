@@ -22,7 +22,10 @@ var bottle: Area2D
 onready var handle: Area2D = $Handle
 onready var handle_sprite: Sprite = $Handle/Sprite
 onready var spout: Sprite = $Spout
+onready var pour: Sprite = $Spout/Pour
 onready var bottle_detector: Area2D = $BottleDetector
+onready var animation_player: AnimationPlayer = $AnimationPlayer
+
 
 func _ready() -> void:
 	set_handle_type(handle_type)
@@ -49,6 +52,7 @@ func _on_Handle_input_event(_viewport: Node, event: InputEvent, _shape_idx: int)
 func _physics_process(delta: float) -> void:
 	if pouring and bottle:
 		bottle.fill(delta * 100, COLOR_DICT[handle_type], HANDLE_DICT[handle_type])
+		animation_player.play("Pour")
 
 
 func _toggle_pour() -> void:
@@ -56,10 +60,13 @@ func _toggle_pour() -> void:
 		pouring = true
 		handle.rotate(deg2rad(-30))
 		spout.texture = SPOUT_TILTED_TEXTURE
+		pour.visible = true
+		pour.modulate = COLOR_DICT[handle_type]
 	else:
 		pouring = false
 		handle.rotate(deg2rad(30))
 		spout.texture = SPOUT_TEXTURE
+		pour.visible = false
 
 
 func _on_BottleDetector_area_entered(area: Area2D) -> void:
