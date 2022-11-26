@@ -18,7 +18,7 @@ func _on_Draggable_put_down(area: Area2D) -> void:
 	area.snap_to_position(top_snap_position.global_position)
 	area.get_parent().remove_child(area)
 	area.get_node("CollisionShape2D").disabled = true
-	add_child(area)
+	sprite.add_child(area)
 
 #func _on_Draggable_picked_up(area: Area2D) -> void:
 #	area.position = area.global_position
