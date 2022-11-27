@@ -1,5 +1,6 @@
 extends Node2D
 
+signal spawned_baby(baby)
 
 export(PackedScene) var baby_scene = preload("res://src/Characters/Baby.tscn")
 
@@ -16,8 +17,9 @@ func _on_SpawnTimer_timeout() -> void:
 	var baby_instance = baby_scene.instance()
 	spawn_position.add_child(baby_instance)
 	baby_instance.position = spawn_position.position - baby_instance.sit_position.position
+	emit_signal("spawned_baby", baby_instance)
 	var _connected = baby_instance.connect("satisfied", self, "_on_Baby_Satisfied")
 
 
-func _on_Baby_Satisfied(_happiness_level: float) -> void:
+func _on_Baby_Satisfied(_score: float) -> void:
 	spawn_timer.start(rand_range(2.0, 10.0))

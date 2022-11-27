@@ -1,19 +1,26 @@
 extends Node
 
-#var held_object: Node2D = null
+
+var current_score := 0.0
+
+
+onready var baby_spawner: Node2D = $Bar/Stools/BabySpawner
+onready var baby_spawner_2: Node2D = $Bar/Stools/BabySpawner2
+onready var baby_spawner_3: Node2D = $Bar/Stools/BabySpawner3
+onready var score_label: Label = $HBoxContainer/Label2
+
 
 func _ready() -> void:
 	randomize()
-#	for node in get_tree().get_nodes_in_group("pickable"):
-#		node.connect("touched", self, "_on_pickable_clicked")
+	var _connceted = baby_spawner.connect("spawned_baby", self, "_on_Spawned_Baby")
+	_connceted = baby_spawner_2.connect("spawned_baby", self, "_on_Spawned_Baby")
+	_connceted = baby_spawner_3.connect("spawned_baby", self, "_on_Spawned_Baby")
 
-#func _on_pickable_clicked(object: Node2D) -> void:
-#	if !held_object:
-#		print(held_object)
-#		held_object = object
-#		held_object.pickup()
-#
-#func _unhandled_input(event: InputEvent) -> void:
-#	if held_object and event.is_action_released("touch"):
-#		held_object.drop()
-#		held_object = null
+
+func _on_Spawned_Baby(baby: Node2D) -> void:
+	var _connected = baby.connect("satisfied", self, "_on_Baby_Satisfied")
+
+
+func _on_Baby_Satisfied(score: float) -> void:
+	current_score += score
+	score_label.text = str(current_score)

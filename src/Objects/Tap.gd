@@ -51,7 +51,7 @@ func _on_Handle_input_event(_viewport: Node, event: InputEvent, _shape_idx: int)
 
 func _physics_process(delta: float) -> void:
 	if pouring and bottle:
-		bottle.fill(delta * 100, COLOR_DICT[handle_type], HANDLE_DICT[handle_type])
+		bottle.fill(delta * 100, COLOR_DICT[handle_type], HANDLE_DICT[handle_type], handle_type)
 		animation_player.play("Pour")
 
 

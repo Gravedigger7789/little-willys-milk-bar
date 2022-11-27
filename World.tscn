@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://src/Objects/Bottle.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/bar/bar-back.png" type="Texture" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://assets/background/background.png" type="Texture" id=7]
 [ext_resource path="res://assets/bar/bartop.png" type="Texture" id=8]
 [ext_resource path="res://src/Objects/BabySpawner.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/GUI/Theme.tres" type="Theme" id=10]
 [ext_resource path="res://src/Objects/Tap.tscn" type="PackedScene" id=11]
 
 [node name="World" type="Node"]
@@ -27,6 +28,31 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 texture = ExtResource( 7 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+margin_bottom = 14.0
+alignment = 2
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+margin_left = 1857.0
+margin_right = 2148.0
+margin_bottom = 174.0
+rect_min_size = Vector2( 40, 32 )
+theme = ExtResource( 10 )
+text = "Score:"
+align = 1
+valign = 1
+
+[node name="Label2" type="Label" parent="HBoxContainer"]
+margin_left = 2152.0
+margin_right = 2280.0
+margin_bottom = 174.0
+rect_min_size = Vector2( 128, 32 )
+theme = ExtResource( 10 )
+text = "0"
+align = 1
+valign = 1
 
 [node name="Bar" type="Node2D" parent="."]
 
