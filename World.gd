@@ -12,9 +12,9 @@ onready var score_label: Label = $HBoxContainer/Label2
 
 func _ready() -> void:
 	randomize()
-	var _connceted = baby_spawner.connect("spawned_baby", self, "_on_Spawned_Baby")
-	_connceted = baby_spawner_2.connect("spawned_baby", self, "_on_Spawned_Baby")
-	_connceted = baby_spawner_3.connect("spawned_baby", self, "_on_Spawned_Baby")
+	var _connected = baby_spawner.connect("spawned_baby", self, "_on_Spawned_Baby")
+	_connected = baby_spawner_2.connect("spawned_baby", self, "_on_Spawned_Baby")
+	_connected = baby_spawner_3.connect("spawned_baby", self, "_on_Spawned_Baby")
 
 
 func _on_Spawned_Baby(baby: Node2D) -> void:
