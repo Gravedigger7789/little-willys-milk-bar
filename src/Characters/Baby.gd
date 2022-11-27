@@ -132,5 +132,5 @@ func _on_Bottle_drink_up(fill: float, flavor: String, cap: String) -> void:
 	if bottle:
 		bottle.queue_free()
 		bottle = null
-	emit_signal("satisfied", (happiness_level * fill) + actual_happiness)
+	emit_signal("satisfied", (happiness_level + actual_happiness) * fill)
 	queue_free()

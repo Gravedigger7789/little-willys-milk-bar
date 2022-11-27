@@ -1,16 +1,16 @@
 [gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://src/Objects/Bottle.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/Objects/BottleSpawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/bar/bar-back.png" type="Texture" id=2]
 [ext_resource path="res://World.gd" type="Script" id=3]
 [ext_resource path="res://src/Objects/BottleCap.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/tap/milk-tap.png" type="Texture" id=5]
 [ext_resource path="res://src/Objects/BottleLauncher.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/background/background.png" type="Texture" id=7]
 [ext_resource path="res://assets/bar/bartop.png" type="Texture" id=8]
 [ext_resource path="res://src/Objects/BabySpawner.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/GUI/Theme.tres" type="Theme" id=10]
 [ext_resource path="res://src/Objects/Tap.tscn" type="PackedScene" id=11]
+[ext_resource path="res://assets/tap/milk-tap.png" type="Texture" id=13]
 
 [node name="World" type="Node"]
 script = ExtResource( 3 )
@@ -79,7 +79,7 @@ texture = ExtResource( 8 )
 
 [node name="Tap" type="Sprite" parent="Bar"]
 position = Vector2( 432, 704 )
-texture = ExtResource( 5 )
+texture = ExtResource( 13 )
 
 [node name="Tap" parent="Bar/Tap" instance=ExtResource( 11 )]
 position = Vector2( -240, -192 )
@@ -96,16 +96,8 @@ handle_type = "Berry"
 position = Vector2( 928, 864 )
 input_pickable = true
 
-[node name="Bottles" type="Node2D" parent="."]
-
-[node name="Bottle" parent="Bottles" instance=ExtResource( 1 )]
-position = Vector2( 464, 1120 )
-
-[node name="Bottle2" parent="Bottles" instance=ExtResource( 1 )]
-position = Vector2( 320, 1120 )
-
-[node name="Bottle3" parent="Bottles" instance=ExtResource( 1 )]
-position = Vector2( 176, 1120 )
+[node name="BottleSpawner" parent="." instance=ExtResource( 1 )]
+position = Vector2( 224, 1120 )
 
 [node name="BottleCaps" type="Node2D" parent="."]
 

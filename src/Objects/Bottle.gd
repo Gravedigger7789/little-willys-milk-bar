@@ -57,8 +57,4 @@ func push(distance: Vector2, strength: float) -> void:
 
 
 func _on_Bottle_Finish_Push() -> void:
-	if closed:
-		emit_signal("drink_up", current_fill, milk_flavor, cap)
-	else:
-		print("broken")
-		emit_signal("drink_up", current_fill, milk_flavor, cap)
+	emit_signal("drink_up", current_fill, milk_flavor, cap)

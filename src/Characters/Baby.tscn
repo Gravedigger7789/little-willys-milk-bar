@@ -12,7 +12,7 @@
 [ext_resource path="res://assets/tap/milk-tap-handle-choco.png" type="Texture" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 175, 512 )
+extents = Vector2( 120, 512 )
 
 [node name="Baby" type="Area2D"]
 collision_layer = 16

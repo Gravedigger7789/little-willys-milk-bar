@@ -111,6 +111,7 @@ texture = ExtResource( 5 )
 position = Vector2( 0, 360 )
 
 [node name="Sprite" parent="Coaster" index="0"]
+visible = false
 material = SubResource( 5 )
 
 [node name="CollisionShape2D" parent="Coaster" index="1"]
