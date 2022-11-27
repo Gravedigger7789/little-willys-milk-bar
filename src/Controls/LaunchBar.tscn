@@ -41,6 +41,7 @@ margin_right = 200.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 400, 64 )
 mouse_filter = 2
+min_value = 10.0
 value = 50.0
 texture_under = SubResource( 6 )
 texture_progress = SubResource( 3 )
