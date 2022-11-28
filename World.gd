@@ -32,7 +32,7 @@ func _ready() -> void:
 	var _connected = baby_spawner.connect("spawned_baby", self, "_on_Spawned_Baby")
 	_connected = baby_spawner_2.connect("spawned_baby", self, "_on_Spawned_Baby")
 	_connected = baby_spawner_3.connect("spawned_baby", self, "_on_Spawned_Baby")
-	high_score_label.text = str(high_score)
+	high_score_label.text = str(int(high_score))
 
 
 func _start_game() -> void:
@@ -50,10 +50,10 @@ func _on_Spawned_Baby(baby: Node2D) -> void:
 
 func _on_Baby_Satisfied(score: float) -> void:
 	current_score += score
-	score_label.text = str(current_score)
+	score_label.text = str(int(current_score))
 	if high_score < current_score:
 		high_score = current_score
-		high_score_label.text = str(high_score)
+		high_score_label.text = str(int(high_score))
 		save_data()
 
 
