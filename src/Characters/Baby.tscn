@@ -55,13 +55,13 @@ position = Vector2( 0, -384 )
 texture = ExtResource( 11 )
 
 [node name="WantedCap" type="Sprite" parent="WantedBubble"]
-position = Vector2( 48, 0 )
-scale = Vector2( 0.3, 0.3 )
+position = Vector2( 50, 20 )
+scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 9 )
 
 [node name="WantedFlavor" type="Sprite" parent="WantedBubble"]
-position = Vector2( -32, 0 )
-scale = Vector2( 0.3, 0.3 )
+position = Vector2( -50, 0 )
+scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 10 )
 
 [connection signal="area_entered" from="." to="." method="_on_Baby_area_entered"]

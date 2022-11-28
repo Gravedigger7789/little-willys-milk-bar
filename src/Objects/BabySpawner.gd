@@ -8,8 +8,7 @@ onready var spawn_timer: Timer = $SpawnTimer
 onready var spawn_position: Position2D = $SpawnPosition
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
+func start_spawning() -> void:
 	spawn_timer.start(rand_range(1, 5.0))
 
 
