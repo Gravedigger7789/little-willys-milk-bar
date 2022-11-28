@@ -16,6 +16,11 @@
 [node name="World" type="Node"]
 script = ExtResource( 3 )
 
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 0, -1080 )
+anchor_mode = 0
+current = true
+
 [node name="Background" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -29,6 +34,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 texture = ExtResource( 7 )
+
+[node name="Button" type="Button" parent="Background"]
+margin_left = 400.0
+margin_top = 600.0
+margin_right = 716.0
+margin_bottom = 780.0
+theme = ExtResource( 10 )
+text = " Start "
 
 [node name="Bar" type="Node2D" parent="."]
 
@@ -119,3 +132,5 @@ color = "Red"
 
 [node name="TrashCan" parent="." instance=ExtResource( 5 )]
 position = Vector2( 1216, 976 )
+
+[connection signal="pressed" from="Background/Button" to="." method="_on_Button_pressed"]
