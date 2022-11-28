@@ -36,6 +36,24 @@ const CAPS := {
 	"Green": preload("res://assets/bottle/bottle-lid-green.png"),
 }
 
+const SKIN_TONES := [
+	Color("#ffd6c5"),
+	Color("#ffe2c9"),
+	Color("#ffcba3"),
+	Color("#d8905f"),
+	Color("#88513a"),
+	Color("#e7c1b2"),
+	Color("#e7cbb5"),
+	Color("#e8b894"),
+	Color("#c28155"),
+	Color("#7b4934"),
+	Color("#e4bdad"),
+	Color("#e6c8b0"),
+	Color("#e7b38d"),
+	Color("#be794a"),
+	Color("#733e26"),
+]
+
 export var color: Color = Color(1, 1, 1, 1) setget set_color
 export(int, 0,4) var hair_style: int = 0 setget set_hair_style
 export(int, 0,1) var arm_position: int = 0 setget set_arm_position
@@ -60,7 +78,7 @@ onready var wanted_flavor_sprite: Sprite = $WantedBubble/WantedFlavor
 
 
 func _ready() -> void:
-	set_color(Color(randf(), randf(), randf(), 1.0))
+	set_color(SKIN_TONES[randi() % SKIN_TONES.size()])
 	set_hair_style(randi() % HAIR_STYLES.size())
 	set_arm_position(randi() % ARMS.size())
 	wanted_flavor = FLAVORS.keys()[randi() % FLAVORS.size()]
