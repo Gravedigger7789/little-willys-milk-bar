@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://assets/tap/milk-tap-handle-choco.png" type="Texture" id=1]
 [ext_resource path="res://assets/tap/milk-tap-spout-straight.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://src/Objects/Coaster.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/tap/milk-pour.png" type="Texture" id=5]
 [ext_resource path="res://src/Shaders/Outline.gdshader" type="Shader" id=6]
+[ext_resource path="res://assets/music/pour-medium.wav" type="AudioStream" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 100, 254 )
@@ -129,6 +130,10 @@ shape = SubResource( 2 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Pour = SubResource( 3 )
 anims/RESET = SubResource( 4 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+volume_db = 15.0
 
 [connection signal="input_event" from="Handle" to="." method="_on_Handle_input_event"]
 [connection signal="area_entered" from="BottleDetector" to="." method="_on_BottleDetector_area_entered"]

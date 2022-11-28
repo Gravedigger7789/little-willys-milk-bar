@@ -27,6 +27,7 @@ onready var spout: Sprite = $Spout
 onready var pour: Sprite = $Spout/Pour
 onready var bottle_detector: Area2D = $BottleDetector
 onready var animation_player: AnimationPlayer = $AnimationPlayer
+onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 
 
 func _ready() -> void:
@@ -54,6 +55,7 @@ func _physics_process(delta: float) -> void:
 
 func _toggle_pour() -> void:
 	if !pouring:
+		audio_stream_player.play(1.5)
 		pouring = true
 		handle.rotate(deg2rad(-30))
 		spout.texture = SPOUT_TILTED_TEXTURE
