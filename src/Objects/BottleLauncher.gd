@@ -8,6 +8,7 @@ var bottle: Area2D = null
 
 onready var launch_bar: Control = $LaunchBar
 onready var launch_button: TextureButton = $LaunchButton
+onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 
 
 func _ready() -> void:
@@ -36,6 +37,7 @@ func _on_Draggable_picked_up(area: Area2D) -> void:
 
 
 func _on_LaunchButton_pressed() -> void:
+	audio_stream_player.play(1.0)
 	launch_bar.stop()
 	launch_button.visible = false
 

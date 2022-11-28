@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://src/Objects/Coaster.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Objects/BottleLauncher.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://assets/launcher/launcher.png" type="Texture" id=7]
 [ext_resource path="res://assets/launcher/launch-button-pressed.png" type="Texture" id=8]
 [ext_resource path="res://assets/launcher/launch-button-hover.png" type="Texture" id=9]
+[ext_resource path="res://assets/music/glass-slide.wav" type="AudioStream" id=10]
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
@@ -73,6 +74,10 @@ custom_fonts/font = SubResource( 5 )
 text = "Launch!"
 align = 1
 valign = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="5"]
+stream = ExtResource( 10 )
+volume_db = 24.0
 
 [connection signal="activated" from="LaunchBar" to="." method="_on_LaunchBar_activated"]
 [connection signal="pressed" from="LaunchButton" to="." method="_on_LaunchButton_pressed"]
