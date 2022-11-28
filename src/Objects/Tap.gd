@@ -13,6 +13,7 @@ const COLOR_DICT := {
 }
 const SPOUT_TEXTURE := preload("res://assets/tap/milk-tap-spout-straight.png")
 const SPOUT_TILTED_TEXTURE := preload("res://assets/tap/milk-tap-spout-tilt.png")
+const FILL_SPEED := 150
 
 export(String, "Berry", "Chocolate", "Regular") var handle_type: String = "Chocolate" setget set_handle_type
 
@@ -46,7 +47,7 @@ func _on_Handle_input_event(_viewport: Node, event: InputEvent, _shape_idx: int)
 
 func _physics_process(delta: float) -> void:
 	if pouring and bottle:
-		bottle.fill(delta * 100, COLOR_DICT[handle_type], HANDLE_DICT[handle_type], handle_type)
+		bottle.fill(delta * FILL_SPEED, COLOR_DICT[handle_type], HANDLE_DICT[handle_type], handle_type)
 		animation_player.play("Pour")
 
 
