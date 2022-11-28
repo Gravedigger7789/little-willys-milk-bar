@@ -30,31 +30,6 @@ anchor_bottom = 1.0
 mouse_filter = 2
 texture = ExtResource( 7 )
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-anchor_right = 1.0
-margin_bottom = 14.0
-alignment = 2
-
-[node name="Label" type="Label" parent="HBoxContainer"]
-margin_left = 1857.0
-margin_right = 2148.0
-margin_bottom = 174.0
-rect_min_size = Vector2( 40, 32 )
-theme = ExtResource( 10 )
-text = "Score:"
-align = 1
-valign = 1
-
-[node name="Label2" type="Label" parent="HBoxContainer"]
-margin_left = 2152.0
-margin_right = 2280.0
-margin_bottom = 174.0
-rect_min_size = Vector2( 128, 32 )
-theme = ExtResource( 10 )
-text = "0"
-align = 1
-valign = 1
-
 [node name="Bar" type="Node2D" parent="."]
 
 [node name="Stools" type="Node2D" parent="Bar"]
@@ -92,6 +67,35 @@ handle_type = "Regular"
 [node name="Tap3" parent="Bar/Tap" instance=ExtResource( 11 )]
 position = Vector2( 240, -192 )
 handle_type = "Berry"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+margin_top = 796.0
+margin_bottom = 974.0
+mouse_filter = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+margin_left = 1857.0
+margin_top = 2.0
+margin_right = 2148.0
+margin_bottom = 176.0
+rect_min_size = Vector2( 40, 32 )
+theme = ExtResource( 10 )
+text = "Score:"
+align = 1
+valign = 1
+
+[node name="Label2" type="Label" parent="HBoxContainer"]
+margin_left = 2152.0
+margin_top = 2.0
+margin_right = 2280.0
+margin_bottom = 176.0
+rect_min_size = Vector2( 128, 32 )
+theme = ExtResource( 10 )
+text = "0"
+align = 1
+valign = 1
 
 [node name="BottleLauncher" parent="." instance=ExtResource( 6 )]
 position = Vector2( 928, 864 )
