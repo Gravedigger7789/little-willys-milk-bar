@@ -32,10 +32,11 @@ func _on_Draggable_picked_up(area: Area2D) -> void:
 
 func _on_LaunchButton_pressed() -> void:
 	launch_bar.stop()
+	launch_button.visible = false
 
 
 func _on_LaunchBar_activated(strength: float) -> void:
-	if bottle.has_method("push"):
+	if bottle and bottle.has_method("push"):
 		var launch_position = launch_distance * strength
 		var launch_strength = max(2.0 * (1 - strength), 0.5)
 		bottle.push(launch_position, launch_strength)
