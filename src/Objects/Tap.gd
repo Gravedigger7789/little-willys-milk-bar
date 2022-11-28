@@ -39,12 +39,7 @@ func set_handle_type(value: String) -> void:
 
 func _on_Handle_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event.is_action_pressed("touch"):
-		var areas := handle.get_overlapping_areas()
-		var is_on_top := true
-		for area in areas:
-			if not is_greater_than(area) and area.is_visible_in_tree():
-				is_on_top = false
-		if is_on_top and bottle and !pouring:
+		if bottle and !pouring:
 			get_tree().set_input_as_handled()
 			_toggle_pour()
 
