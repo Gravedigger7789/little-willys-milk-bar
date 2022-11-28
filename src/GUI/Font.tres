@@ -1,9 +1,10 @@
 [gd_resource type="DynamicFont" load_steps=2 format=2]
 
-[sub_resource type="DynamicFontData" id=1]
+[sub_resource type="DynamicFontData" id=4]
 font_path = "res://assets/fonts/PatrickHand-Regular.ttf"
 
 [resource]
-size = 72
+resource_local_to_scene = true
+size = 128
 use_filter = true
-font_data = SubResource( 1 )
+font_data = SubResource( 4 )

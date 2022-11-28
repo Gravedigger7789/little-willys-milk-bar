@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://src/Objects/BottleSpawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/bar/bar-back.png" type="Texture" id=2]
@@ -15,10 +15,18 @@
 [ext_resource path="res://assets/tap/milk-tap.png" type="Texture" id=13]
 [ext_resource path="res://assets/background/sign.png" type="Texture" id=14]
 [ext_resource path="res://assets/background/wanted.png" type="Texture" id=15]
-[ext_resource path="res://src/GUI/Font.tres" type="DynamicFont" id=16]
 [ext_resource path="res://assets/background/table.png" type="Texture" id=17]
 [ext_resource path="res://assets/mess/spill-white.png" type="Texture" id=18]
 [ext_resource path="res://assets/mess/rag.png" type="Texture" id=19]
+
+[sub_resource type="DynamicFontData" id=4]
+font_path = "res://assets/fonts/PatrickHand-Regular.ttf"
+
+[sub_resource type="DynamicFont" id=5]
+resource_local_to_scene = true
+size = 72
+use_filter = true
+font_data = SubResource( 4 )
 
 [node name="World" type="Node"]
 script = ExtResource( 3 )
@@ -66,7 +74,7 @@ margin_bottom = 260.0
 rect_min_size = Vector2( 200, 100 )
 theme = ExtResource( 10 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = ExtResource( 16 )
+custom_fonts/font = SubResource( 5 )
 align = 1
 valign = 1
 
@@ -128,10 +136,10 @@ mouse_filter = 2
 alignment = 2
 
 [node name="Label" type="Label" parent="HBoxContainer"]
-margin_left = 1984.0
-margin_top = 39.0
+margin_left = 1857.0
+margin_top = 2.0
 margin_right = 2148.0
-margin_bottom = 138.0
+margin_bottom = 176.0
 rect_min_size = Vector2( 40, 32 )
 theme = ExtResource( 10 )
 text = "Score:"
@@ -140,9 +148,9 @@ valign = 1
 
 [node name="Label2" type="Label" parent="HBoxContainer"]
 margin_left = 2152.0
-margin_top = 39.0
+margin_top = 2.0
 margin_right = 2280.0
-margin_bottom = 138.0
+margin_bottom = 176.0
 rect_min_size = Vector2( 128, 32 )
 theme = ExtResource( 10 )
 text = "0"
@@ -154,7 +162,7 @@ position = Vector2( 928, 864 )
 input_pickable = true
 
 [node name="TrashCan" parent="." instance=ExtResource( 5 )]
-position = Vector2( 1140, 1040 )
+position = Vector2( 1360, 1040 )
 
 [node name="BottleSpawner" parent="." instance=ExtResource( 1 )]
 position = Vector2( 224, 1120 )
