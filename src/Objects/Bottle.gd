@@ -2,6 +2,7 @@ extends Draggable
 
 
 signal bottle_filled
+signal bottle_closed
 signal drink_up(fill, flavor, cap)
 signal trashed
 
@@ -28,6 +29,8 @@ func _on_Draggable_put_down(area: Area2D) -> void:
 	cap = area.color
 	top.visible = true
 	closed = true
+	emit_signal("bottle_closed")
+	_draggable = true
 
 
 func _moved_object() -> void:

@@ -19,6 +19,7 @@ export(String, "Berry", "Chocolate", "Regular") var handle_type: String = "Choco
 
 var pouring := false
 var bottle: Area2D
+var bottle_closed := false
 
 onready var handle: Area2D = $Handle
 onready var handle_sprite: Sprite = $Handle/Sprite
@@ -40,13 +41,13 @@ func set_handle_type(value: String) -> void:
 
 func _on_Handle_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event.is_action_pressed("touch"):
-		if bottle and !pouring:
+		if bottle and !pouring and !bottle_closed:
 			get_tree().set_input_as_handled()
 			_toggle_pour()
 
 
 func _physics_process(delta: float) -> void:
-	if pouring and bottle:
+	if pouring and bottle and !bottle_closed:
 		bottle.fill(delta * FILL_SPEED, COLOR_DICT[handle_type], HANDLE_DICT[handle_type], handle_type)
 		animation_player.play("Pour")
 
@@ -68,15 +69,31 @@ func _toggle_pour() -> void:
 func _on_BottleDetector_area_entered(area: Area2D) -> void:
 	if !bottle:
 		bottle = area
-		if bottle and !bottle.is_connected("bottle_filled", self, "_on_Bottle_filled"):
-			var _connected = bottle.connect("bottle_filled", self, "_on_Bottle_filled")
+		if bottle:
+			if !bottle.is_connected("bottle_filled", self, "_on_Bottle_filled"):
+				var _connected = bottle.connect("bottle_filled", self, "_on_Bottle_filled")
+			if !bottle.is_connected("bottle_closed", self, "_on_Bottle_closed"):
+				var _connected = bottle.connect("bottle_closed", self, "_on_Bottle_closed")
+			bottle_closed = bottle.closed
 
 
 func _on_BottleDetector_area_exited(area: Area2D) -> void:
-	if bottle and bottle == area and bottle.is_connected("bottle_filled", self, "_on_Bottle_filled"):
-		bottle.disconnect("bottle_filled", self, "_on_Bottle_filled")
+	if bottle and bottle == area:
+		if bottle.is_connected("bottle_filled", self, "_on_Bottle_filled"):
+			bottle.disconnect("bottle_filled", self, "_on_Bottle_filled")
+		if bottle.is_connected("bottle_closed", self, "_on_Bottle_closed"):
+			bottle.disconnect("bottle_closed", self, "_on_Bottle_closed")
 		bottle = null
+		bottle_closed = false
 
 
 func _on_Bottle_filled() -> void:
 	_toggle_pour()
+
+func _on_Bottle_closed() -> void:
+	bottle_closed = true
+	if pouring:
+		pouring = false
+		handle.rotate(deg2rad(30))
+		spout.texture = SPOUT_TEXTURE
+		pour.visible = false

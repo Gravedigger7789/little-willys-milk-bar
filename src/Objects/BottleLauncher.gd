@@ -6,6 +6,7 @@ var bottle: Area2D = null
 
 onready var launch_bar: Control = $LaunchBar
 onready var launch_button: TextureButton = $LaunchButton
+onready var hint: Label = $Hint
 
 
 func _ready() -> void:
@@ -21,6 +22,7 @@ func _on_Draggable_put_down(area: Area2D) -> void:
 		launch_bar.rect_position.y = -(launch_bar_offset + sprite_height)
 		launch_bar.toggle(true)
 		launch_button.visible = true
+		hint.visible = false
 
 
 func _on_Draggable_picked_up(area: Area2D) -> void:
