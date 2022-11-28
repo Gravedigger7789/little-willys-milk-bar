@@ -64,6 +64,8 @@ position = Vector2( -50, 0 )
 scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 10 )
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
 [connection signal="area_entered" from="." to="." method="_on_Baby_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_Baby_area_exited"]
 [connection signal="timeout" from="HappyTimer" to="." method="_on_HappyTimer_timeout"]

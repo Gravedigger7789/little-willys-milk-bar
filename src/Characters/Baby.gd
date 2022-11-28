@@ -61,6 +61,11 @@ const SKIN_TONES := [
 	Color("#733e26"),
 ]
 
+const POINT_SOUNDS := [
+	preload("res://assets/music/point-earning-burp.wav"),
+	preload("res://assets/music/point-earning-hiccup.wav"),
+]
+
 export var color: Color = Color(1, 1, 1, 1) setget set_color
 export(int, 0,4) var hair_style: int = 0 setget set_hair_style
 export(int, 0,1) var arm_position: int = 0 setget set_arm_position
@@ -83,6 +88,7 @@ onready var sit_position: Position2D = $SitPosition
 onready var wanted_bubble_sprite: Sprite = $WantedBubble
 onready var wanted_cap_sprite: Sprite = $WantedBubble/WantedCap
 onready var wanted_flavor_sprite: Sprite = $WantedBubble/WantedFlavor
+onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 
 
 func _ready() -> void:
@@ -160,8 +166,13 @@ func _on_Bottle_drink_up(fill: float, flavor: String, cap: String) -> void:
 	var actual_happiness = happiness_level
 	if wanted_flavor == flavor and wanted_cap == cap:
 		self.happiness_level = max_happiness
+		audio_stream_player.stream = POINT_SOUNDS[0]
+		audio_stream_player.volume_db = 15
 	else:
 		self.happiness_level = 0
+		audio_stream_player.stream = POINT_SOUNDS[1]
+		audio_stream_player.volume_db = 12
+	audio_stream_player.play()
 	yield(get_tree().create_timer(1.0), "timeout")
 	emit_signal("satisfied", (happiness_level + actual_happiness) * fill)
 	queue_free()
