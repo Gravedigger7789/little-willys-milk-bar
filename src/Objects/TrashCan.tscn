@@ -3,7 +3,7 @@
 [ext_resource path="res://src/Objects/Coaster.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Objects/TrashCan.gd" type="Script" id=2]
 [ext_resource path="res://src/Shaders/Outline.gdshader" type="Shader" id=3]
-[ext_resource path="res://assets/mess/trash-closed.png" type="Texture" id=4]
+[ext_resource path="res://assets/mess/recycle-bin.png" type="Texture" id=4]
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
@@ -11,9 +11,9 @@ shader = ExtResource( 3 )
 shader_param/outline_color = Color( 1, 1, 1, 0 )
 shader_param/width = 3.0
 
-[sub_resource type="CircleShape2D" id=2]
-resource_local_to_scene = true
-radius = 32.0
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 40.0
+height = 265.0
 
 [node name="TrashCan" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
@@ -23,4 +23,5 @@ material = SubResource( 1 )
 texture = ExtResource( 4 )
 
 [node name="CollisionShape2D" parent="." index="1"]
+rotation = 1.5708
 shape = SubResource( 2 )

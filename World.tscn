@@ -115,6 +115,9 @@ valign = 1
 position = Vector2( 928, 864 )
 input_pickable = true
 
+[node name="TrashCan" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1140, 1040 )
+
 [node name="BottleSpawner" parent="." instance=ExtResource( 1 )]
 position = Vector2( 224, 1120 )
 
@@ -130,9 +133,6 @@ position = Vector2( 1936, 1056 )
 [node name="BottleCap3" parent="BottleCaps" instance=ExtResource( 4 )]
 position = Vector2( 2112, 1056 )
 color = "Red"
-
-[node name="TrashCan" parent="." instance=ExtResource( 5 )]
-position = Vector2( 1216, 976 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 12 )
