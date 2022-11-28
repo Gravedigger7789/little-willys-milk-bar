@@ -66,12 +66,24 @@ const POINT_SOUNDS := [
 	preload("res://assets/music/point-earning-hiccup.wav"),
 ]
 
+const COOING_SOUNDS := [
+	preload("res://assets/music/baby-cooing-1.wav"),
+	preload("res://assets/music/baby-cooing-2.wav"),
+	preload("res://assets/music/baby-cooing-3.wav"),
+]
+
+const ANNOYED_SOUNDS := [
+	preload("res://assets/music/baby-annoyed-1.wav"),
+	preload("res://assets/music/baby-annoyed-2.wav"),
+	preload("res://assets/music/baby-annoyed-3.wav"),
+]
+
 export var color: Color = Color(1, 1, 1, 1) setget set_color
 export(int, 0,4) var hair_style: int = 0 setget set_hair_style
 export(int, 0,1) var arm_position: int = 0 setget set_arm_position
 export var happiness_degrade_time := 10.0
 
-var max_happiness := 3
+var max_happiness := 3.0
 var happiness_level: int = max_happiness setget set_happiness
 var wanted_flavor: String
 var wanted_cap: String
@@ -96,6 +108,9 @@ func _ready() -> void:
 	set_hair_style(randi() % HAIR_STYLES.size())
 	set_arm_position(randi() % ARMS.size())
 	set_wanted_bubble()
+	audio_stream_player.volume_db = 5
+	audio_stream_player.stream = COOING_SOUNDS[randi() % COOING_SOUNDS.size()]
+	audio_stream_player.play(1.0)
 	happy_timer.start(happiness_degrade_time)
 
 
@@ -139,6 +154,10 @@ func set_happiness(value: int) -> void:
 	happiness_level = value
 	if face:
 		face.texture = FACES[happiness_level]
+	if happiness_level <= max_happiness / 2.0:
+		audio_stream_player.volume_db = 5
+		audio_stream_player.stream = ANNOYED_SOUNDS[randi() % ANNOYED_SOUNDS.size()]
+		audio_stream_player.play(0.5)
 
 
 func _on_HappyTimer_timeout() -> void:
@@ -165,7 +184,7 @@ func _on_Baby_area_exited(area: Area2D) -> void:
 func _on_Bottle_drink_up(fill: float, flavor: String, cap: String) -> void:
 	var actual_happiness = happiness_level
 	if wanted_flavor == flavor and wanted_cap == cap:
-		self.happiness_level = max_happiness
+		self.happiness_level = int(max_happiness)
 		audio_stream_player.stream = POINT_SOUNDS[0]
 		audio_stream_player.volume_db = 15
 	else:
