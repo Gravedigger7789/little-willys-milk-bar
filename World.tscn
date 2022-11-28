@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://src/Objects/BottleSpawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/bar/bar-back.png" type="Texture" id=2]
@@ -20,6 +20,18 @@
 [ext_resource path="res://assets/mess/spill-white.png" type="Texture" id=18]
 [ext_resource path="res://assets/mess/rag.png" type="Texture" id=19]
 
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 0.172549, 0.172549, 0.172549, 0.870588 )
+
+[sub_resource type="DynamicFontData" id=6]
+font_path = "res://assets/fonts/PatrickHand-Regular.ttf"
+
+[sub_resource type="DynamicFont" id=7]
+resource_local_to_scene = true
+size = 48
+use_filter = true
+font_data = SubResource( 6 )
+
 [sub_resource type="DynamicFontData" id=4]
 font_path = "res://assets/fonts/PatrickHand-Regular.ttf"
 
@@ -28,15 +40,6 @@ resource_local_to_scene = true
 size = 72
 use_filter = true
 font_data = SubResource( 4 )
-
-[sub_resource type="DynamicFontData" id=6]
-font_path = "res://assets/fonts/PatrickHand-Regular.ttf"
-
-[sub_resource type="DynamicFont" id=7]
-resource_local_to_scene = true
-size = 64
-use_filter = true
-font_data = SubResource( 6 )
 
 [node name="World" type="Node"]
 script = ExtResource( 3 )
@@ -60,11 +63,58 @@ anchor_bottom = 1.0
 mouse_filter = 2
 texture = ExtResource( 7 )
 
+[node name="Tutorial" type="Node2D" parent="Background"]
+
+[node name="Tap" parent="Background/Tutorial" instance=ExtResource( 11 )]
+visible = false
+position = Vector2( 32, 560 )
+scale = Vector2( 0.5, 0.5 )
+
+[node name="Bottle" parent="Background/Tutorial/Tap" instance=ExtResource( 16 )]
+visible = false
+position = Vector2( 0, 224 )
+input_pickable = false
+monitoring = false
+monitorable = false
+
+[node name="BottleCap" parent="Background/Tutorial/Tap" instance=ExtResource( 4 )]
+visible = false
+position = Vector2( 1376, 256 )
+collision_layer = 0
+input_pickable = false
+
+[node name="BottleLauncher" parent="Background/Tutorial" instance=ExtResource( 6 )]
+visible = false
+position = Vector2( 896, 528 )
+show_for_tutorial = true
+
+[node name="Panel" type="Panel" parent="Background/Tutorial"]
+margin_left = 25.0
+margin_top = 110.0
+margin_right = 1025.0
+margin_bottom = 960.0
+rect_min_size = Vector2( 1000, 850 )
+theme = ExtResource( 10 )
+custom_styles/panel = SubResource( 8 )
+
+[node name="Label" type="Label" parent="Background/Tutorial/Panel"]
+margin_left = 16.0
+margin_right = 992.0
+margin_bottom = 825.0
+theme = ExtResource( 10 )
+custom_fonts/font = SubResource( 7 )
+text = "Little Willy's Milk Bar is open and you're the barkeep! 
+Each baby is dreaming of their perfect milk - look to the symbols above each head for their order! 
+Place an empty bottle under the corresponding faucet, and press the chocolate, plain or strawberry milk symbol to fill it up. 
+Place the correct cap on the bottle, and then place it on the launcher- time to slide these delightful brats over some milk! 
+When the power meter looks right, press the launch button. And remember- there's no use crying over spilled milk."
+autowrap = true
+
 [node name="Button" type="Button" parent="Background"]
-margin_left = 288.0
-margin_top = 136.0
-margin_right = 604.0
-margin_bottom = 316.0
+margin_left = 672.0
+margin_top = 872.0
+margin_right = 988.0
+margin_bottom = 1052.0
 mouse_default_cursor_shape = 2
 theme = ExtResource( 10 )
 text = " Start "
@@ -88,50 +138,6 @@ custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 5 )
 align = 1
 valign = 1
-
-[node name="Tutorial" type="Node2D" parent="Background"]
-position = Vector2( 48, 248 )
-
-[node name="Tap" parent="Background/Tutorial" instance=ExtResource( 11 )]
-position = Vector2( 32, 560 )
-scale = Vector2( 0.5, 0.5 )
-
-[node name="Bottle" parent="Background/Tutorial/Tap" instance=ExtResource( 16 )]
-position = Vector2( 0, 224 )
-input_pickable = false
-monitoring = false
-monitorable = false
-
-[node name="BottleCap" parent="Background/Tutorial/Tap" instance=ExtResource( 4 )]
-position = Vector2( 1376, 256 )
-collision_layer = 0
-input_pickable = false
-
-[node name="BottleLauncher" parent="Background/Tutorial" instance=ExtResource( 6 )]
-position = Vector2( 896, 528 )
-show_for_tutorial = true
-
-[node name="Label" type="Label" parent="Background/Tutorial"]
-margin_left = 112.0
-margin_top = 240.0
-margin_right = 1036.0
-margin_bottom = 777.0
-theme = ExtResource( 10 )
-custom_fonts/font = SubResource( 7 )
-text = "Serve as many as you can in 90 seconds!
-Drag bottle under tap
-Click on tap to pour
-Drag cap onto Bottle
-Place bottle on Finger
-Click launch button!"
-
-[node name="Label2" type="Label" parent="Background/Tutorial"]
-margin_left = 144.0
-margin_top = 88.0
-margin_right = 694.0
-margin_bottom = 262.0
-theme = ExtResource( 10 )
-text = "How to play!"
 
 [node name="Bar" type="Node2D" parent="."]
 
