@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://src/Objects/BottleSpawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/bar/bar-back.png" type="Texture" id=2]
@@ -11,10 +11,11 @@
 [ext_resource path="res://src/Objects/BabySpawner.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/GUI/Theme.tres" type="Theme" id=10]
 [ext_resource path="res://src/Objects/Tap.tscn" type="PackedScene" id=11]
-[ext_resource path="res://assets/music/theme.wav" type="AudioStream" id=12]
+[ext_resource path="res://assets/music/start-menu-theme.wav" type="AudioStream" id=12]
 [ext_resource path="res://assets/tap/milk-tap.png" type="Texture" id=13]
 [ext_resource path="res://assets/background/sign.png" type="Texture" id=14]
 [ext_resource path="res://assets/background/wanted.png" type="Texture" id=15]
+[ext_resource path="res://src/Objects/Bottle.tscn" type="PackedScene" id=16]
 [ext_resource path="res://assets/background/table.png" type="Texture" id=17]
 [ext_resource path="res://assets/mess/spill-white.png" type="Texture" id=18]
 [ext_resource path="res://assets/mess/rag.png" type="Texture" id=19]
@@ -27,6 +28,15 @@ resource_local_to_scene = true
 size = 72
 use_filter = true
 font_data = SubResource( 4 )
+
+[sub_resource type="DynamicFontData" id=6]
+font_path = "res://assets/fonts/PatrickHand-Regular.ttf"
+
+[sub_resource type="DynamicFont" id=7]
+resource_local_to_scene = true
+size = 64
+use_filter = true
+font_data = SubResource( 6 )
 
 [node name="World" type="Node"]
 script = ExtResource( 3 )
@@ -51,10 +61,11 @@ mouse_filter = 2
 texture = ExtResource( 7 )
 
 [node name="Button" type="Button" parent="Background"]
-margin_left = 400.0
-margin_top = 536.0
-margin_right = 716.0
-margin_bottom = 716.0
+margin_left = 288.0
+margin_top = 136.0
+margin_right = 604.0
+margin_bottom = 316.0
+mouse_default_cursor_shape = 2
 theme = ExtResource( 10 )
 text = " Start "
 
@@ -77,6 +88,50 @@ custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 5 )
 align = 1
 valign = 1
+
+[node name="Tutorial" type="Node2D" parent="Background"]
+position = Vector2( 48, 248 )
+
+[node name="Tap" parent="Background/Tutorial" instance=ExtResource( 11 )]
+position = Vector2( 32, 560 )
+scale = Vector2( 0.5, 0.5 )
+
+[node name="Bottle" parent="Background/Tutorial/Tap" instance=ExtResource( 16 )]
+position = Vector2( 0, 224 )
+input_pickable = false
+monitoring = false
+monitorable = false
+
+[node name="BottleCap" parent="Background/Tutorial/Tap" instance=ExtResource( 4 )]
+position = Vector2( 1376, 256 )
+collision_layer = 0
+input_pickable = false
+
+[node name="BottleLauncher" parent="Background/Tutorial" instance=ExtResource( 6 )]
+position = Vector2( 896, 528 )
+show_for_tutorial = true
+
+[node name="Label" type="Label" parent="Background/Tutorial"]
+margin_left = 112.0
+margin_top = 240.0
+margin_right = 1036.0
+margin_bottom = 777.0
+theme = ExtResource( 10 )
+custom_fonts/font = SubResource( 7 )
+text = "Serve as many as you can in 90 seconds!
+Drag bottle under tap
+Click on tap to pour
+Drag cap onto Bottle
+Place bottle on Finger
+Click launch button!"
+
+[node name="Label2" type="Label" parent="Background/Tutorial"]
+margin_left = 144.0
+margin_top = 88.0
+margin_right = 694.0
+margin_bottom = 262.0
+theme = ExtResource( 10 )
+text = "How to play!"
 
 [node name="Bar" type="Node2D" parent="."]
 
@@ -128,14 +183,14 @@ handle_type = "Regular"
 position = Vector2( 240, -192 )
 handle_type = "Berry"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="ScoreContainer" type="HBoxContainer" parent="."]
 anchor_right = 1.0
 margin_top = 796.0
 margin_bottom = 974.0
 mouse_filter = 2
 alignment = 2
 
-[node name="Label" type="Label" parent="HBoxContainer"]
+[node name="Label" type="Label" parent="ScoreContainer"]
 margin_left = 1857.0
 margin_top = 2.0
 margin_right = 2148.0
@@ -146,7 +201,7 @@ text = "Score:"
 align = 1
 valign = 1
 
-[node name="Label2" type="Label" parent="HBoxContainer"]
+[node name="Label2" type="Label" parent="ScoreContainer"]
 margin_left = 2152.0
 margin_top = 2.0
 margin_right = 2280.0
@@ -154,6 +209,34 @@ margin_bottom = 176.0
 rect_min_size = Vector2( 128, 32 )
 theme = ExtResource( 10 )
 text = "0"
+align = 1
+valign = 1
+
+[node name="TimeContainer" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+margin_left = 135.0
+margin_top = 796.0
+margin_bottom = 974.0
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="TimeContainer"]
+margin_top = 2.0
+margin_right = 475.0
+margin_bottom = 176.0
+rect_min_size = Vector2( 40, 32 )
+theme = ExtResource( 10 )
+text = "Time Left:"
+align = 1
+valign = 1
+
+[node name="Label2" type="Label" parent="TimeContainer"]
+margin_left = 479.0
+margin_top = 2.0
+margin_right = 607.0
+margin_bottom = 176.0
+rect_min_size = Vector2( 128, 32 )
+theme = ExtResource( 10 )
+text = "90"
 align = 1
 valign = 1
 
@@ -184,4 +267,9 @@ color = "Red"
 stream = ExtResource( 12 )
 autoplay = true
 
+[node name="GameTimer" type="Timer" parent="."]
+wait_time = 90.0
+one_shot = true
+
 [connection signal="pressed" from="Background/Button" to="." method="_on_Button_pressed"]
+[connection signal="timeout" from="GameTimer" to="." method="_on_GameTimer_timeout"]

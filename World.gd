@@ -4,15 +4,22 @@ extends Node
 const DATA_PATH = "user://data.json"
 var data := {}
 
+const MENU_THEME = preload("res://assets/music/start-menu-theme.wav")
+const MAIN_THEME = preload("res://assets/music/theme.wav")
+
 var current_score := 0.0 
 var high_score := 0.0
 
 onready var baby_spawner: Node2D = $Bar/Stools/BabySpawner
 onready var baby_spawner_2: Node2D = $Bar/Stools/BabySpawner2
 onready var baby_spawner_3: Node2D = $Bar/Stools/BabySpawner3
-onready var score_label: Label = $HBoxContainer/Label2
+onready var score_label: Label = $ScoreContainer/Label2
+onready var time_label: Label = $TimeContainer/Label2
 onready var high_score_label: Label = $Background/Wanted/HighScore
 onready var camera_2d: Camera2D = $Camera2D
+onready var camera_start_position := camera_2d.position
+onready var game_timer: Timer = $GameTimer
+onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 
 
 func _enter_tree() -> void:
@@ -35,6 +42,10 @@ func _ready() -> void:
 	high_score_label.text = str(int(high_score))
 
 
+func _process(_delta: float) -> void:
+	time_label.text = str(int(game_timer.time_left))
+
+
 func _start_game() -> void:
 	var tween := create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	# warning-ignore:return_value_discarded
@@ -42,6 +53,9 @@ func _start_game() -> void:
 	baby_spawner.start_spawning()
 	baby_spawner_2.start_spawning()
 	baby_spawner_3.start_spawning()
+	audio_stream_player.stream = MAIN_THEME
+	audio_stream_player.play()
+	game_timer.start()
 
 
 func _on_Spawned_Baby(baby: Node2D) -> void:
@@ -69,3 +83,15 @@ func save_data() -> void:
 	}
 	file.store_line(to_json(json_data))
 	file.close()
+
+
+func _on_GameTimer_timeout() -> void:
+	save_data()
+	baby_spawner.stop_spawning()
+	baby_spawner_2.stop_spawning()
+	baby_spawner_3.stop_spawning()
+	var tween := create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	# warning-ignore:return_value_discarded
+	tween.tween_property(camera_2d, "position", camera_start_position, 1.0)
+	yield(get_tree().create_timer(1.0), "timeout")
+	var _reloaded = get_tree().reload_current_scene()

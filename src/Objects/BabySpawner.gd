@@ -12,6 +12,10 @@ func start_spawning() -> void:
 	spawn_timer.start(rand_range(1, 5.0))
 
 
+func stop_spawning() -> void:
+	spawn_timer.stop()
+
+
 func _on_SpawnTimer_timeout() -> void:
 	var baby_instance = baby_scene.instance()
 	spawn_position.add_child(baby_instance)

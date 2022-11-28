@@ -1,16 +1,20 @@
 extends Coaster
 
+export var show_for_tutorial := false
+
 var launch_bar_offset := 64
 var launch_distance := Vector2(1375, 0)
 var bottle: Area2D = null
 
 onready var launch_bar: Control = $LaunchBar
 onready var launch_button: TextureButton = $LaunchButton
-onready var hint: Label = $Hint
 
 
 func _ready() -> void:
 	launch_bar.toggle(false)
+	if show_for_tutorial:
+		launch_button.visible = true
+		launch_button.disabled = true
 
 
 func _on_Draggable_put_down(area: Area2D) -> void:
@@ -22,7 +26,6 @@ func _on_Draggable_put_down(area: Area2D) -> void:
 		launch_bar.rect_position.y = -(launch_bar_offset + sprite_height)
 		launch_bar.toggle(true)
 		launch_button.visible = true
-		hint.visible = false
 
 
 func _on_Draggable_picked_up(area: Area2D) -> void:
