@@ -129,8 +129,5 @@ func _on_Bottle_drink_up(fill: float, flavor: String, cap: String) -> void:
 	else:
 		self.happiness_level = 0
 	yield(get_tree().create_timer(1.0), "timeout")
-	if bottle:
-		bottle.queue_free()
-		bottle = null
 	emit_signal("satisfied", (happiness_level + actual_happiness) * fill)
 	queue_free()

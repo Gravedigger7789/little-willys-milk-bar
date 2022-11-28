@@ -58,3 +58,5 @@ func push(distance: Vector2, strength: float) -> void:
 
 func _on_Bottle_Finish_Push() -> void:
 	emit_signal("drink_up", current_fill, milk_flavor, cap)
+	yield(get_tree().create_timer(1.0), "timeout")
+	queue_free()
