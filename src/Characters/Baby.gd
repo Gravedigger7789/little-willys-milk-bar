@@ -124,7 +124,10 @@ func set_arm_position(value: int) -> void:
 	arm_position = value
 	if arms:
 		arms.texture = ARMS[arm_position]
-		
+	# Fix arm position when open
+	if arm_position == 1:
+		arms.show_behind_parent = true
+
 
 func set_happiness(value: int) -> void:
 	happiness_level = value
