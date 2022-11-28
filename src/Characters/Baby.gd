@@ -21,7 +21,14 @@ const FACES := [
 
 const ARMS := [
 	preload("res://assets/baby/baby-arms-close.png"),
-	preload("res://assets/baby/baby-arms-open.png")
+	preload("res://assets/baby/baby-arms-open.png"),
+]
+
+const WANTED_BUBBLES := [
+	preload("res://assets/bubble/thought-bubble-1.png"), 
+	preload("res://assets/bubble/thought-bubble-2.png"), 
+	preload("res://assets/bubble/thought-bubble-3.png"), 
+	preload("res://assets/bubble/thought-bubble-4.png"),
 ]
 
 const FLAVORS := {
@@ -73,6 +80,7 @@ onready var face: Sprite = $Head/Face
 onready var hair: Sprite = $Head/Hair
 onready var happy_timer: Timer = $HappyTimer
 onready var sit_position: Position2D = $SitPosition
+onready var wanted_bubble_sprite: Sprite = $WantedBubble
 onready var wanted_cap_sprite: Sprite = $WantedBubble/WantedCap
 onready var wanted_flavor_sprite: Sprite = $WantedBubble/WantedFlavor
 
@@ -81,11 +89,16 @@ func _ready() -> void:
 	set_color(SKIN_TONES[randi() % SKIN_TONES.size()])
 	set_hair_style(randi() % HAIR_STYLES.size())
 	set_arm_position(randi() % ARMS.size())
+	set_wanted_bubble()
+	happy_timer.start(happiness_degrade_time)
+
+
+func set_wanted_bubble() -> void:
+	wanted_bubble_sprite.texture = WANTED_BUBBLES[randi() % WANTED_BUBBLES.size()]
 	wanted_flavor = FLAVORS.keys()[randi() % FLAVORS.size()]
 	wanted_flavor_sprite.texture = FLAVORS[wanted_flavor]
 	wanted_cap = CAPS.keys()[randi() % CAPS.size()]
 	wanted_cap_sprite.texture = CAPS[wanted_cap]
-	happy_timer.start(happiness_degrade_time)
 
 
 func set_color(value: Color) -> void:

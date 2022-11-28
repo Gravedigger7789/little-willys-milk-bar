@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/baby/baby-hair-3.png" type="Texture" id=1]
 [ext_resource path="res://assets/baby/baby-arms-open.png" type="Texture" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://assets/baby/baby-legs.png" type="Texture" id=8]
 [ext_resource path="res://assets/bottle/bottle-lid-blue.png" type="Texture" id=9]
 [ext_resource path="res://assets/tap/milk-tap-handle-choco.png" type="Texture" id=10]
+[ext_resource path="res://assets/bubble/thought-bubble-1.png" type="Texture" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 120, 512 )
@@ -51,15 +52,16 @@ shape = SubResource( 1 )
 
 [node name="WantedBubble" type="Sprite" parent="."]
 position = Vector2( 0, -384 )
+texture = ExtResource( 11 )
 
 [node name="WantedCap" type="Sprite" parent="WantedBubble"]
-position = Vector2( 75, 26 )
-scale = Vector2( 0.5, 0.5 )
+position = Vector2( 48, 0 )
+scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 9 )
 
 [node name="WantedFlavor" type="Sprite" parent="WantedBubble"]
-position = Vector2( -75, 0 )
-scale = Vector2( 0.5, 0.5 )
+position = Vector2( -32, 0 )
+scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 10 )
 
 [connection signal="area_entered" from="." to="." method="_on_Baby_area_entered"]
