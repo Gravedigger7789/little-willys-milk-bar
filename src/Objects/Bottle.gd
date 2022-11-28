@@ -3,6 +3,7 @@ extends Draggable
 
 signal bottle_filled
 signal drink_up(fill, flavor, cap)
+signal trashed
 
 
 var current_fill := 0.0
@@ -54,6 +55,11 @@ func push(distance: Vector2, strength: float) -> void:
 		tween.tween_property(self, "position", position + distance, strength)
 		var _connected = tween.connect("finished", self, "_on_Bottle_Finish_Push")
 		animation_player.play("Fill")
+
+
+func trash() -> void:
+	emit_signal("trashed")
+	queue_free()
 
 
 func _on_Bottle_Finish_Push() -> void:
