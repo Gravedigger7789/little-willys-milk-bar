@@ -106,8 +106,8 @@ custom_fonts/font = SubResource( 7 )
 text = "Little Willy's Milk Bar is open and you're the barkeep! 
 Each baby is dreaming of their perfect milk - look to the symbols above each head for their order! 
 Place an empty bottle under the corresponding faucet, and press the chocolate, plain or strawberry milk symbol to fill it up. 
-Place the correct cap on the bottle, and then place it on the launcher- time to slide these delightful brats over some milk! 
-When the power meter looks right, press the launch button. And remember- there's no use crying over spilled milk."
+Place the correct cap on the bottle, and then place it on the launcher - time to slide these delightful brats over some milk! 
+When the power meter looks right, press the launch button. And remember - there's no use crying over spilled milk."
 autowrap = true
 
 [node name="Button" type="Button" parent="Background"]
