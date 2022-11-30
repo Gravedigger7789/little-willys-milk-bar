@@ -1,8 +1,7 @@
 extends Coaster
 
-
 const BREAK_SOUNDS := [
-	preload("res://assets/music/glass-break-1.wav"), 
+	preload("res://assets/music/glass-break-1.wav"),
 	preload("res://assets/music/glass-break-2.wav"),
 ]
 

@@ -22,7 +22,7 @@ func _on_Draggable_put_down(area: Area2D) -> void:
 	if !bottle:
 		._on_Draggable_put_down(area)
 		bottle = area
-	#	area.get_node("CollisionShape2D").disabled = true
+		#	area.get_node("CollisionShape2D").disabled = true
 		var sprite_height = area.sprite.texture.get_height() * area.sprite.scale.y
 		launch_bar.rect_position.y = -(launch_bar_offset + sprite_height)
 		launch_bar.toggle(true)
@@ -48,4 +48,3 @@ func _on_LaunchBar_activated(strength: float) -> void:
 		var launch_strength = max(2.0 * (1 - strength), 0.5)
 		bottle.push(launch_position, launch_strength)
 		bottle = null
-	
