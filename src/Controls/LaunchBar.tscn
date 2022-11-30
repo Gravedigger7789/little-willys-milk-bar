@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/Controls/LaunchBar.gd" type="Script" id=1]
 
@@ -7,42 +7,34 @@ resource_local_to_scene = true
 offsets = PoolRealArray( 0, 0.507538, 1 )
 colors = PoolColorArray( 0, 1, 0, 1, 1, 1, 0, 1, 1, 0, 0, 1 )
 
-[sub_resource type="Gradient" id=5]
-offsets = PoolRealArray( 0.00584795, 1 )
-colors = PoolColorArray( 0.196078, 0.196078, 0.196078, 1, 0.196078, 0.196078, 0.196078, 1 )
+[sub_resource type="Gradient" id=7]
+colors = PoolColorArray( 0.784314, 0.588235, 0.784314, 1, 0.392157, 0.392157, 1, 1 )
 
-[sub_resource type="GradientTexture2D" id=6]
-gradient = SubResource( 5 )
-width = 400
+[sub_resource type="GradientTexture2D" id=8]
+gradient = SubResource( 7 )
+fill_from = Vector2( 0.5, 1 )
+fill_to = Vector2( 0.5, 0 )
 
-[sub_resource type="Gradient" id=4]
-offsets = PoolRealArray( 0.315789, 1 )
-colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 1 )
-
-[sub_resource type="GradientTexture2D" id=3]
-gradient = SubResource( 4 )
-width = 400
-fill_from = Vector2( 1, 0 )
-fill_to = Vector2( 0, 0 )
+[sub_resource type="StyleBoxTexture" id=9]
+texture = SubResource( 8 )
+region_rect = Rect2( 0, 0, 64, 64 )
 
 [node name="LaunchBar" type="Control"]
 mouse_filter = 2
 script = ExtResource( 1 )
 gradient = SubResource( 2 )
 
-[node name="TextureProgress" type="TextureProgress" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
+[node name="ProgressBar" type="ProgressBar" parent="."]
 margin_left = -200.0
 margin_top = -32.0
-margin_right = 200.0
-margin_bottom = 32.0
+margin_right = -196.0
+margin_bottom = -18.0
 rect_min_size = Vector2( 400, 64 )
-mouse_filter = 2
+custom_styles/fg = SubResource( 9 )
+min_value = 10.0
+step = 1.0
 value = 50.0
-texture_under = SubResource( 6 )
-texture_progress = SubResource( 3 )
+rounded = true
+percent_visible = false
 
-[connection signal="value_changed" from="TextureProgress" to="." method="_on_TextureProgress_value_changed"]
+[connection signal="value_changed" from="ProgressBar" to="." method="_on_ProgressBar_value_changed"]

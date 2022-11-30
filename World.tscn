@@ -1,17 +1,53 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=25 format=2]
 
-[ext_resource path="res://src/Objects/Bottle.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/Objects/BottleSpawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/bar/bar-back.png" type="Texture" id=2]
 [ext_resource path="res://World.gd" type="Script" id=3]
 [ext_resource path="res://src/Objects/BottleCap.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/Objects/TrashCan.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/Objects/BottleLauncher.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/background/background.png" type="Texture" id=7]
 [ext_resource path="res://assets/bar/bartop.png" type="Texture" id=8]
-[ext_resource path="res://assets/bar/bar-stool.png" type="Texture" id=10]
+[ext_resource path="res://src/Objects/BabySpawner.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/GUI/Theme.tres" type="Theme" id=10]
 [ext_resource path="res://src/Objects/Tap.tscn" type="PackedScene" id=11]
+[ext_resource path="res://assets/music/start-menu-theme.wav" type="AudioStream" id=12]
+[ext_resource path="res://assets/tap/milk-tap.png" type="Texture" id=13]
+[ext_resource path="res://assets/background/sign.png" type="Texture" id=14]
+[ext_resource path="res://assets/background/wanted.png" type="Texture" id=15]
+[ext_resource path="res://src/Objects/Bottle.tscn" type="PackedScene" id=16]
+[ext_resource path="res://assets/background/table.png" type="Texture" id=17]
+[ext_resource path="res://assets/mess/spill-white.png" type="Texture" id=18]
+[ext_resource path="res://assets/mess/rag.png" type="Texture" id=19]
+
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 0.172549, 0.172549, 0.172549, 0.870588 )
+
+[sub_resource type="DynamicFontData" id=6]
+font_path = "res://assets/fonts/PatrickHand-Regular.ttf"
+
+[sub_resource type="DynamicFont" id=7]
+resource_local_to_scene = true
+size = 48
+use_filter = true
+font_data = SubResource( 6 )
+
+[sub_resource type="DynamicFontData" id=4]
+font_path = "res://assets/fonts/PatrickHand-Regular.ttf"
+
+[sub_resource type="DynamicFont" id=5]
+resource_local_to_scene = true
+size = 72
+use_filter = true
+font_data = SubResource( 4 )
 
 [node name="World" type="Node"]
 script = ExtResource( 3 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 0, -1080 )
+anchor_mode = 0
+current = true
 
 [node name="Background" type="Control" parent="."]
 anchor_right = 1.0
@@ -27,21 +63,108 @@ anchor_bottom = 1.0
 mouse_filter = 2
 texture = ExtResource( 7 )
 
+[node name="Tutorial" type="Node2D" parent="Background"]
+
+[node name="Tap" parent="Background/Tutorial" instance=ExtResource( 11 )]
+visible = false
+position = Vector2( 32, 560 )
+scale = Vector2( 0.5, 0.5 )
+
+[node name="Bottle" parent="Background/Tutorial/Tap" instance=ExtResource( 16 )]
+visible = false
+position = Vector2( 0, 224 )
+input_pickable = false
+monitoring = false
+monitorable = false
+
+[node name="BottleCap" parent="Background/Tutorial/Tap" instance=ExtResource( 4 )]
+visible = false
+position = Vector2( 1376, 256 )
+collision_layer = 0
+input_pickable = false
+
+[node name="BottleLauncher" parent="Background/Tutorial" instance=ExtResource( 6 )]
+visible = false
+position = Vector2( 896, 528 )
+show_for_tutorial = true
+
+[node name="Panel" type="Panel" parent="Background/Tutorial"]
+margin_left = 25.0
+margin_top = 110.0
+margin_right = 1025.0
+margin_bottom = 960.0
+rect_min_size = Vector2( 1000, 850 )
+theme = ExtResource( 10 )
+custom_styles/panel = SubResource( 8 )
+
+[node name="Label" type="Label" parent="Background/Tutorial/Panel"]
+margin_left = 16.0
+margin_right = 992.0
+margin_bottom = 825.0
+theme = ExtResource( 10 )
+custom_fonts/font = SubResource( 7 )
+text = "Little Willy's Milk Bar is open and you're the barkeep! 
+Each baby is dreaming of their perfect milk - look to the symbols above each head for their order! 
+Place an empty bottle under the corresponding faucet, and press the chocolate, plain or strawberry milk symbol to fill it up. 
+Place the correct cap on the bottle, and then place it on the launcher - time to slide these delightful brats over some milk! 
+When the power meter looks right, press the launch button. And remember - there's no use crying over spilled milk."
+autowrap = true
+
+[node name="Button" type="Button" parent="Background"]
+margin_left = 672.0
+margin_top = 872.0
+margin_right = 988.0
+margin_bottom = 1052.0
+mouse_default_cursor_shape = 2
+theme = ExtResource( 10 )
+text = " Start "
+
+[node name="Title" type="Sprite" parent="Background"]
+position = Vector2( 1360, 168 )
+texture = ExtResource( 14 )
+
+[node name="Wanted" type="Sprite" parent="Background"]
+position = Vector2( 1968, 728 )
+texture = ExtResource( 15 )
+
+[node name="HighScore" type="Label" parent="Background/Wanted"]
+margin_left = -48.0
+margin_top = 160.0
+margin_right = 152.0
+margin_bottom = 260.0
+rect_min_size = Vector2( 200, 100 )
+theme = ExtResource( 10 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 5 )
+align = 1
+valign = 1
+
 [node name="Bar" type="Node2D" parent="."]
 
 [node name="Stools" type="Node2D" parent="Bar"]
 
-[node name="Stool" type="Sprite" parent="Bar/Stools"]
-position = Vector2( 1617, 739 )
-texture = ExtResource( 10 )
+[node name="BabySpawner" parent="Bar/Stools" instance=ExtResource( 9 )]
+position = Vector2( 1952, 736 )
 
-[node name="Stool2" type="Sprite" parent="Bar/Stools"]
-position = Vector2( 1249, 739 )
-texture = ExtResource( 10 )
+[node name="BabySpawner2" parent="Bar/Stools" instance=ExtResource( 9 )]
+position = Vector2( 1568, 736 )
 
-[node name="Stool3" type="Sprite" parent="Bar/Stools"]
-position = Vector2( 881, 739 )
-texture = ExtResource( 10 )
+[node name="BabySpawner3" parent="Bar/Stools" instance=ExtResource( 9 )]
+position = Vector2( 1184, 736 )
+
+[node name="Babies" type="Node2D" parent="Bar"]
+
+[node name="Table" type="Sprite" parent="Bar"]
+position = Vector2( 672, 384 )
+texture = ExtResource( 17 )
+
+[node name="Spill" type="Sprite" parent="Bar/Table"]
+position = Vector2( 174.5, -152.5 )
+texture = ExtResource( 18 )
+
+[node name="Rag" type="Sprite" parent="Bar/Table"]
+position = Vector2( 126.5, -184.5 )
+texture = ExtResource( 19 )
 
 [node name="Back" type="Sprite" parent="Bar"]
 position = Vector2( 1140, 1088 )
@@ -51,41 +174,109 @@ texture = ExtResource( 2 )
 position = Vector2( 1140, 907 )
 texture = ExtResource( 8 )
 
-[node name="Tap" parent="Bar" instance=ExtResource( 11 )]
-position = Vector2( 192, 512 )
+[node name="Tap" type="Sprite" parent="Bar"]
+position = Vector2( 432, 704 )
+texture = ExtResource( 13 )
 
-[node name="Tap2" parent="Bar" instance=ExtResource( 11 )]
-position = Vector2( 432, 512 )
+[node name="Tap" parent="Bar/Tap" instance=ExtResource( 11 )]
+position = Vector2( -240, -192 )
+
+[node name="Tap2" parent="Bar/Tap" instance=ExtResource( 11 )]
+position = Vector2( 0, -192 )
 handle_type = "Regular"
 
-[node name="Tap3" parent="Bar" instance=ExtResource( 11 )]
-position = Vector2( 672, 512 )
+[node name="Tap3" parent="Bar/Tap" instance=ExtResource( 11 )]
+position = Vector2( 240, -192 )
 handle_type = "Berry"
 
+[node name="ScoreContainer" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+margin_top = 796.0
+margin_bottom = 974.0
+mouse_filter = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="ScoreContainer"]
+margin_left = 1857.0
+margin_top = 2.0
+margin_right = 2148.0
+margin_bottom = 176.0
+rect_min_size = Vector2( 40, 32 )
+theme = ExtResource( 10 )
+text = "Score:"
+align = 1
+valign = 1
+
+[node name="Label2" type="Label" parent="ScoreContainer"]
+margin_left = 2152.0
+margin_top = 2.0
+margin_right = 2280.0
+margin_bottom = 176.0
+rect_min_size = Vector2( 128, 32 )
+theme = ExtResource( 10 )
+text = "0"
+align = 1
+valign = 1
+
+[node name="TimeContainer" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+margin_left = 135.0
+margin_top = 796.0
+margin_bottom = 974.0
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="TimeContainer"]
+margin_top = 2.0
+margin_right = 475.0
+margin_bottom = 176.0
+rect_min_size = Vector2( 40, 32 )
+theme = ExtResource( 10 )
+text = "Time Left:"
+align = 1
+valign = 1
+
+[node name="Label2" type="Label" parent="TimeContainer"]
+margin_left = 479.0
+margin_top = 2.0
+margin_right = 607.0
+margin_bottom = 176.0
+rect_min_size = Vector2( 128, 32 )
+theme = ExtResource( 10 )
+text = "90"
+align = 1
+valign = 1
+
 [node name="BottleLauncher" parent="." instance=ExtResource( 6 )]
-position = Vector2( 2048, 864 )
+position = Vector2( 928, 864 )
 input_pickable = true
 
-[node name="Bottles" type="Node2D" parent="."]
+[node name="TrashCan" parent="." instance=ExtResource( 5 )]
+position = Vector2( 2064, 1040 )
 
-[node name="Bottle" parent="Bottles" instance=ExtResource( 1 )]
-position = Vector2( 848, 720 )
-
-[node name="Bottle2" parent="Bottles" instance=ExtResource( 1 )]
-position = Vector2( 1200, 720 )
-
-[node name="Bottle3" parent="Bottles" instance=ExtResource( 1 )]
-position = Vector2( 1024, 720 )
+[node name="BottleSpawner" parent="." instance=ExtResource( 1 )]
+position = Vector2( 224, 1120 )
 
 [node name="BottleCaps" type="Node2D" parent="."]
+position = Vector2( -592, 0 )
 
 [node name="BottleCap" parent="BottleCaps" instance=ExtResource( 4 )]
-position = Vector2( 1408, 864 )
+position = Vector2( 1776, 1056 )
 color = "Green"
 
 [node name="BottleCap2" parent="BottleCaps" instance=ExtResource( 4 )]
-position = Vector2( 1648, 864 )
+position = Vector2( 1936, 1056 )
 
 [node name="BottleCap3" parent="BottleCaps" instance=ExtResource( 4 )]
-position = Vector2( 1872, 864 )
+position = Vector2( 2112, 1056 )
 color = "Red"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
+autoplay = true
+
+[node name="GameTimer" type="Timer" parent="."]
+wait_time = 90.0
+one_shot = true
+
+[connection signal="pressed" from="Background/Button" to="." method="_on_Button_pressed"]
+[connection signal="timeout" from="GameTimer" to="." method="_on_GameTimer_timeout"]

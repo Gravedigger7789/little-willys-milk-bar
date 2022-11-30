@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/Objects/BottleSpawner.gd" type="Script" id=3]
+
+[node name="BottleSpawner" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Position1" type="Position2D" parent="."]
+
+[node name="Position2" type="Position2D" parent="."]
+position = Vector2( 200, 0 )
+
+[node name="Position3" type="Position2D" parent="."]
+position = Vector2( 400, 0 )

@@ -6,8 +6,10 @@ signal picked_up
 signal put_down
 
 var _dragging := false
+var _draggable := true
 var _touch_position_offset := Vector2()
 var _shadow_lift_offset := Vector2(15, 15)
+var _start_position := Vector2()
 
 onready var sprite_start_scale := sprite.scale
 onready var sprite_lift_scale := sprite_start_scale + Vector2(0.1, 0.1)
@@ -19,13 +21,16 @@ onready var viewport_bounds: Rect2 = get_viewport().get_visible_rect()
 func _ready() -> void:
 	sprite_shadow.texture = sprite.texture
 	sprite_shadow.scale = sprite.scale
+	_start_position = global_position
 
 
 func _process(_delta: float) -> void:
-	if _dragging:
+	if _draggable and _dragging:
 		var new_position = get_global_mouse_position() - _touch_position_offset
 		if viewport_bounds.has_point(new_position):
-			_tween_position(new_position)
+			if global_position.distance_to(new_position) > 0.01:
+				_tween_position(new_position)
+				_moved_object()
 
 
 func _input(event: InputEvent) -> void:
@@ -47,12 +52,12 @@ func _on_Draggable_input_event(_viewport: Node, event: InputEvent, _shape_idx: i
 
 
 func _on_Draggable_mouse_entered() -> void:
-	if !_dragging:
+	if _draggable and !_dragging:
 		_tween_outline(1.0)
 
 
 func _on_Draggable_mouse_exited() -> void:
-	if !_dragging:
+	if _draggable and !_dragging:
 		_tween_outline(0.0)
 
 
@@ -94,3 +99,7 @@ func _tween_scale_and_shadows(sprite_scale: Vector2, shadow_offset: Vector2) -> 
 	tween.tween_property(sprite, "scale", sprite_scale, 0.15)
 	# warning-ignore:return_value_discarded
 	tween.parallel().tween_property(sprite_shadow, "position", shadow_offset, 0.15)
+
+
+func _moved_object() -> void:
+	pass

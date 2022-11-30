@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/baby-annoyed-2.wav-82b8ce3c78b9b2a0e07a015f1dec116c.sample"
+
+[deps]
+
+source_file="res://assets/music/baby-annoyed-2.wav"
+dest_files=[ "res://.import/baby-annoyed-2.wav-82b8ce3c78b9b2a0e07a015f1dec116c.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

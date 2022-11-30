@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/glass-slide.wav-b3f073b9c0f48ba2c607b9e0ed051da5.sample"
+
+[deps]
+
+source_file="res://assets/music/glass-slide.wav"
+dest_files=[ "res://.import/glass-slide.wav-b3f073b9c0f48ba2c607b9e0ed051da5.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
