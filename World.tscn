@@ -251,12 +251,13 @@ position = Vector2( 928, 864 )
 input_pickable = true
 
 [node name="TrashCan" parent="." instance=ExtResource( 5 )]
-position = Vector2( 1360, 1040 )
+position = Vector2( 2064, 1040 )
 
 [node name="BottleSpawner" parent="." instance=ExtResource( 1 )]
 position = Vector2( 224, 1120 )
 
 [node name="BottleCaps" type="Node2D" parent="."]
+position = Vector2( -592, 0 )
 
 [node name="BottleCap" parent="BottleCaps" instance=ExtResource( 4 )]
 position = Vector2( 1776, 1056 )
