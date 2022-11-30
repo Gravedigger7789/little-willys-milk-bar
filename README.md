@@ -3,7 +3,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat)](LICENSE)
 [![Godot CI](https://github.com/Gravedigger7789/little-willys-milk-bar/actions/workflows/godot-ci.yml/badge.svg?branch=main)](https://github.com/Gravedigger7789/little-willys-milk-bar/actions/workflows/godot-ci.yml)
 
-`Little Willy's Milk` was created for the [2022 GitHub Game-Off](https://itch.io/jam/game-off-2022) using the cliché "_there's no use crying over spilled milk_"
+`Little Willy's Milk Bar` was created for the [2022 GitHub Game-Off](https://itch.io/jam/game-off-2022) using the cliché "_there's no use crying over spilled milk_"
 
 **GitHub Game-Off Theme: cliché**
 
