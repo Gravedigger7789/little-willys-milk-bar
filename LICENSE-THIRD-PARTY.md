@@ -105,6 +105,10 @@ limitations under the License.
 
 # Fonts
 
+## [DJ Gross](https://www.fontsquirrel.com/license/DJ-Gross) - SDFonts
+
+---
+
 ## [Patrick Hand](assets/fonts/PatrickHand-Regular.ttf)
 
 ## Open Font License, Version 1.1
