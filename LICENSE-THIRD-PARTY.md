@@ -1,6 +1,6 @@
 # License overview of included 3rd party libraries and assets
 
-The `Little Willy's Milk Bar` is licensed under the terms of the [MIT](LICENSE) License
+`Little Willy's Milk Bar` is licensed under the terms of the [MIT](LICENSE) License
 
 However, `Little Willy's Milk Bar` includes several third-party libraries and assets
 which are licensed under their own respective licenses.
