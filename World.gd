@@ -1,13 +1,12 @@
 extends Node
 
-
 const DATA_PATH = "user://data.json"
-var data := {}
 
 const MENU_THEME = preload("res://assets/music/start-menu-theme.wav")
 const MAIN_THEME = preload("res://assets/music/theme.wav")
+var data := {}
 
-var current_score := 0.0 
+var current_score := 0.0
 var high_score := 0.0
 
 onready var baby_spawner: Node2D = $Bar/Stools/BabySpawner
@@ -22,6 +21,14 @@ onready var game_timer: Timer = $GameTimer
 onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 
 
+func _ready() -> void:
+	randomize()
+	var _connected = baby_spawner.connect("spawned_baby", self, "_on_Spawned_Baby")
+	_connected = baby_spawner_2.connect("spawned_baby", self, "_on_Spawned_Baby")
+	_connected = baby_spawner_3.connect("spawned_baby", self, "_on_Spawned_Baby")
+	high_score_label.text = str(int(high_score))
+
+
 func _enter_tree() -> void:
 	var file := File.new()
 	if file.file_exists(DATA_PATH):
@@ -34,16 +41,18 @@ func _enter_tree() -> void:
 			set(key, data[key])
 
 
-func _ready() -> void:
-	randomize()
-	var _connected = baby_spawner.connect("spawned_baby", self, "_on_Spawned_Baby")
-	_connected = baby_spawner_2.connect("spawned_baby", self, "_on_Spawned_Baby")
-	_connected = baby_spawner_3.connect("spawned_baby", self, "_on_Spawned_Baby")
-	high_score_label.text = str(int(high_score))
-
-
 func _process(_delta: float) -> void:
 	time_label.text = str(int(game_timer.time_left))
+
+
+func save_data() -> void:
+	var file = File.new()
+	file.open(DATA_PATH, File.WRITE)
+	var json_data = {
+		"high_score": high_score,
+	}
+	file.store_line(to_json(json_data))
+	file.close()
 
 
 func _start_game() -> void:
@@ -73,16 +82,6 @@ func _on_Baby_Satisfied(score: float) -> void:
 
 func _on_Button_pressed() -> void:
 	_start_game()
-
-
-func save_data() -> void:
-	var file = File.new()
-	file.open(DATA_PATH, File.WRITE)
-	var json_data = {
-		"high_score": high_score,
-	}
-	file.store_line(to_json(json_data))
-	file.close()
 
 
 func _on_GameTimer_timeout() -> void:

@@ -1,8 +1,6 @@
 extends Node2D
 
-
 export(PackedScene) var bottle_scene = preload("res://src/Objects/Bottle.tscn")
-
 
 onready var position_1: Position2D = $Position1
 onready var position_2: Position2D = $Position2
@@ -16,7 +14,6 @@ func _ready() -> void:
 func _spawn_bottle(position_2d: Position2D) -> void:
 	var bottle_instance = bottle_scene.instance()
 	position_2d.add_child(bottle_instance)
-#	bottle_instance.position = position_2d.position
 	var _connected = bottle_instance.connect("drink_up", self, "_on_Bottle_Drunk")
 	_connected = bottle_instance.connect("trashed", self, "_on_Bottle_Trashed")
 

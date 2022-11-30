@@ -34,6 +34,14 @@ func _ready() -> void:
 	set_handle_type(handle_type)
 
 
+func _physics_process(delta: float) -> void:
+	if pouring and bottle and !bottle_closed:
+		bottle.fill(
+			delta * FILL_SPEED, COLOR_DICT[handle_type], HANDLE_DICT[handle_type], handle_type
+		)
+		animation_player.play("Pour")
+
+
 func set_handle_type(value: String) -> void:
 	handle_type = value
 	if is_inside_tree() and handle_sprite:
@@ -45,12 +53,6 @@ func _on_Handle_input_event(_viewport: Node, event: InputEvent, _shape_idx: int)
 		if bottle and !pouring and !bottle_closed:
 			get_tree().set_input_as_handled()
 			_toggle_pour()
-
-
-func _physics_process(delta: float) -> void:
-	if pouring and bottle and !bottle_closed:
-		bottle.fill(delta * FILL_SPEED, COLOR_DICT[handle_type], HANDLE_DICT[handle_type], handle_type)
-		animation_player.play("Pour")
 
 
 func _toggle_pour() -> void:
@@ -91,6 +93,7 @@ func _on_BottleDetector_area_exited(area: Area2D) -> void:
 
 func _on_Bottle_filled() -> void:
 	_toggle_pour()
+
 
 func _on_Bottle_closed() -> void:
 	bottle_closed = true

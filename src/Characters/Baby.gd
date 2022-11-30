@@ -1,8 +1,6 @@
 extends Node2D
 
-
 signal satisfied(score)
-
 
 const HAIR_STYLES := [
 	preload("res://assets/baby/baby-hair-1.png"),
@@ -25,9 +23,9 @@ const ARMS := [
 ]
 
 const WANTED_BUBBLES := [
-	preload("res://assets/bubble/thought-bubble-1.png"), 
-	preload("res://assets/bubble/thought-bubble-2.png"), 
-	preload("res://assets/bubble/thought-bubble-3.png"), 
+	preload("res://assets/bubble/thought-bubble-1.png"),
+	preload("res://assets/bubble/thought-bubble-2.png"),
+	preload("res://assets/bubble/thought-bubble-3.png"),
 	preload("res://assets/bubble/thought-bubble-4.png"),
 ]
 
@@ -79,8 +77,8 @@ const ANNOYED_SOUNDS := [
 ]
 
 export var color: Color = Color(1, 1, 1, 1) setget set_color
-export(int, 0,4) var hair_style: int = 0 setget set_hair_style
-export(int, 0,1) var arm_position: int = 0 setget set_arm_position
+export(int, 0, 4) var hair_style: int = 0 setget set_hair_style
+export(int, 0, 1) var arm_position: int = 0 setget set_arm_position
 export var happiness_degrade_time := 10.0
 
 var max_happiness := 3.0
